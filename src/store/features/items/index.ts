@@ -4,6 +4,7 @@ import {IModel} from '../../../shared/interfaces/IModel';
 
 export interface ItemsState extends IBaseState {
   items: IModel[];
+  status: string;
 }
 
 const items = createSlice({
@@ -11,7 +12,8 @@ const items = createSlice({
   initialState: {
     items: [],
     loading: false,
-    error: null
+    error: null,
+    status: 'start'
   },
   reducers: {
     setItemsLoading(state: ItemsState) {
@@ -25,6 +27,9 @@ const items = createSlice({
     setItemsError(state: ItemsState, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
+    },
+    setStatus(state: ItemsState, action: PayloadAction<string>) {
+      state.status = action.payload;
     }
   }
 });
@@ -32,7 +37,8 @@ const items = createSlice({
 export const {
   setItemsLoading,
   setItemsSuccess,
-  setItemsError
+  setItemsError,
+  setStatus
 } = items.actions;
 export default items.reducer;
 
