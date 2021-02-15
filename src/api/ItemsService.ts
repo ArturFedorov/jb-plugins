@@ -1,5 +1,5 @@
-import axios from "axios";
-import {IModel} from '../shared/interfaces/IModel';
+import axios from 'axios';
+import { IModel } from '../shared/interfaces/IModel';
 
 export class ItemsService {
   static getItems() {

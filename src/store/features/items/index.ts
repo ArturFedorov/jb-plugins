@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {IBaseState} from '../../../shared/interfaces/store/IBaseState';
-import {IModel} from '../../../shared/interfaces/IModel';
+import { IBaseState } from '../../../shared/interfaces/store/IBaseState';
+import { IModel } from '../../../shared/interfaces/IModel';
+import { IError } from '../../../shared/interfaces/IError';
 
 export interface ItemsState extends IBaseState {
   items: IModel[];
@@ -17,14 +18,16 @@ const items = createSlice({
   },
   reducers: {
     setItemsLoading(state: ItemsState) {
+      console.log('load');
       state.loading = true;
       state.error = null;
     },
-    setItemsSuccess(state: ItemsState, action: PayloadAction<{ items: IModel[]}>) {
+    setItemsSuccess(state: ItemsState, action: PayloadAction<{ items: IModel[] }>) {
       state.items = action.payload.items;
       state.loading = false;
     },
-    setItemsError(state: ItemsState, action: PayloadAction<string>) {
+    setItemsError(state: ItemsState, action: PayloadAction<IError>) {
+      console.log(action.payload, 'assa');
       state.loading = false;
       state.error = action.payload;
     },
@@ -34,12 +37,5 @@ const items = createSlice({
   }
 });
 
-export const {
-  setItemsLoading,
-  setItemsSuccess,
-  setItemsError,
-  setStatus
-} = items.actions;
+export const { setItemsLoading, setItemsSuccess, setItemsError, setStatus } = items.actions;
 export default items.reducer;
-
-

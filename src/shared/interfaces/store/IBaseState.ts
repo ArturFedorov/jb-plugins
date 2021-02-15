@@ -1,4 +1,6 @@
+import { IError } from '../IError';
+
 export interface IBaseState {
   loading: boolean;
-  error: string | null;
+  error: IError | null;
 }
