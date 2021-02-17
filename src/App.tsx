@@ -1,66 +1,29 @@
-import React, { FunctionComponent, useEffect } from 'react';
-import { connect } from 'react-redux';
-import './App.scss';
-import { getError, getItems, getLoadingStatus, getStatus } from './store/features/items/selectors';
-import { fetchItems } from './store/features/items/thunkActions';
-import { RootState } from './store/rootReducer';
-import { IModel } from './shared/interfaces/IModel';
-import { setStatus } from './store/features/items/index';
-import { IError } from './shared/interfaces/IError';
-import asas from './assets/icons/jetbrains-logo.svg';
-import logo from './assets/icons/logo.svg';
+import React, { FunctionComponent } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Header } from './components/root/header/Header';
+import HomePage from './pages/Home';
+import PluginDetailsPage from './pages/plugins/PluginDetails';
+import './styles/index.scss';
 
-export interface IAppProps {
-  items: IModel[];
-  status: string;
-  loading: boolean;
-  error: IError | null;
-  fetchItemsConnect: () => void;
-  setStatusConnect: (status: string) => void;
+export enum Routes {
+  HOME = '/',
+  PLUGIN_DETAILS_PAGE = '/plugins/:name'
 }
 
-const App: FunctionComponent<IAppProps> = ({
-  status,
-  items,
-  loading,
-  error,
-  setStatusConnect,
-  fetchItemsConnect
-}: IAppProps) => {
-  useEffect(() => {
-    console.log('fetch');
-    fetchItemsConnect();
-  }, [fetchItemsConnect]);
-
+const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <h2>{status}</h2>
-      <h2>Loading: {loading.toString()}</h2>
-      <img width="100" src={asas} />
-      <img width="50" src={logo} />
-      <div>
-        <button onClick={() => setStatusConnect('stop')}>Stop</button>
+    <Router basename="/">
+      <div className="app">
+        <Header />
+        <main>
+          <Switch>
+            <Route path={Routes.PLUGIN_DETAILS_PAGE} component={PluginDetailsPage} exact />
+            <Route path={Routes.HOME} component={HomePage} exact />
+          </Switch>
+        </main>
       </div>
-      <p>Hello askclakjcl lsjdjscjdsj</p>
-      <p>{error?.title}</p>
-      {items.map((item: IModel) => (
-        <p key={item.id}>{item.id}</p>
-      ))}
-    </div>
+    </Router>
   );
 };
 
-const mapDispatchToProps = {
-  fetchItemsConnect: fetchItems,
-  setStatusConnect: setStatus
-};
-
-const mapStateToProps = (state: RootState) => ({
-  items: getItems(state.items),
-  status: getStatus(state.items),
-  loading: getLoadingStatus(state.items),
-  error: getError(state.items)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -1,7 +1,7 @@
-import { ItemsState } from './index';
-import { IModel } from '../../../shared/interfaces/IModel';
+import { IPluginState } from './index';
+import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 
-export const getItems = (state: ItemsState): IModel[] => state.items;
-export const getStatus = (state: ItemsState): string => state.status;
-export const getLoadingStatus = (state: ItemsState) => state.loading;
-export const getError = (state: ItemsState) => state.error;
+export const getPlugins = (state: IPluginState): IPlugin[] => state.plugins;
+export const getStatus = (state: IPluginState): string => state.status;
+export const getLoadingStatus = (state: IPluginState) => state.loading;
+export const getError = (state: IPluginState) => state.error;

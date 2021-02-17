@@ -1,7 +1,9 @@
 import { AppThunk } from '../../store';
-import { ItemsService } from '../../../api/ItemsService';
+import { IPluginService } from '../../../api/IPluginService';
 import { setItemsSuccess } from './index';
 
-export const fetchItems = (): AppThunk => async (dispatch) => {
-  ItemsService.getItems().then(({ data }) => dispatch(setItemsSuccess({ items: data })));
+export const fetchPlugins = (): AppThunk => async (dispatch) => {
+  IPluginService.getPlugins().then(({ data }) =>
+    dispatch(setItemsSuccess({ plugins: data.payload }))
+  );
 };

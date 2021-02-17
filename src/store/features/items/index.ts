@@ -1,41 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IBaseState } from '../../../shared/interfaces/store/IBaseState';
-import { IModel } from '../../../shared/interfaces/IModel';
-import { IError } from '../../../shared/interfaces/IError';
+import { IError } from '../../../shared/interfaces/api/IError';
+import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 
-export interface ItemsState extends IBaseState {
-  items: IModel[];
+export interface IPluginState extends IBaseState {
+  plugins: IPlugin[];
   status: string;
 }
 
-const items = createSlice({
-  name: 'items',
+const plugins = createSlice({
+  name: 'plugins',
   initialState: {
-    items: [],
+    plugins: [],
     loading: false,
     error: null,
     status: 'start'
   },
   reducers: {
-    setItemsLoading(state: ItemsState) {
-      console.log('load');
+    setItemsLoading(state: IPluginState) {
       state.loading = true;
       state.error = null;
     },
-    setItemsSuccess(state: ItemsState, action: PayloadAction<{ items: IModel[] }>) {
-      state.items = action.payload.items;
+    setItemsSuccess(state: IPluginState, action: PayloadAction<{ plugins: IPlugin[] }>) {
+      state.plugins = action.payload.plugins;
       state.loading = false;
     },
-    setItemsError(state: ItemsState, action: PayloadAction<IError>) {
-      console.log(action.payload, 'assa');
+    setItemsError(state: IPluginState, action: PayloadAction<IError>) {
       state.loading = false;
       state.error = action.payload;
     },
-    setStatus(state: ItemsState, action: PayloadAction<string>) {
+    setStatus(state: IPluginState, action: PayloadAction<string>) {
       state.status = action.payload;
     }
   }
 });
 
-export const { setItemsLoading, setItemsSuccess, setItemsError, setStatus } = items.actions;
-export default items.reducer;
+export const { setItemsLoading, setItemsSuccess, setItemsError, setStatus } = plugins.actions;
+export default plugins.reducer;

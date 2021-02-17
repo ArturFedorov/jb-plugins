@@ -1,12 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit/';
-import itemsReducer, { ItemsState } from './features/items/index';
+import pluginsReducer, { IPluginState } from './features/items/index';
 
 export interface RootState {
-  items: ItemsState;
+  plugins: IPluginState;
 }
 
 const rootReducer = combineReducers({
-  items: itemsReducer
+  plugins: pluginsReducer
 });
 
 export default rootReducer;

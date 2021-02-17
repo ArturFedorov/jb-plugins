@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { isAxiosRequestConfigExtended } from '../config/AxiosConfigExtension';
-import { IError } from '../../shared/interfaces/IError';
+import { IError } from '../../shared/interfaces/api/IError';
 import { setItemsError } from '../../store/features/items';
 import store from '../../store/store';
 

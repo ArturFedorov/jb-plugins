@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { setItemsLoading } from '../../store/features/items';
 import store from '../../store/store';
+import { isAxiosRequestConfigExtended } from '../config/AxiosConfigExtension';
 
 export interface AxiosLoadingRequestConfig extends AxiosRequestConfig {
   noLoading?: boolean;
@@ -16,6 +17,10 @@ interface AxiosLoadingError extends AxiosError {
 
 axios.interceptors.request.use(
   (config: AxiosLoadingRequestConfig) => {
+    if (isAxiosRequestConfigExtended(config) && config.noLoader) {
+      return config;
+    }
+
     store.dispatch(setItemsLoading());
     return config;
   },

@@ -1,4 +1,4 @@
-import { IError } from '../IError';
+import { IError } from '../api/IError';
 
 export interface IBaseState {
   loading: boolean;

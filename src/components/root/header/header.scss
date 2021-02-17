@@ -1,0 +1,19 @@
+@import '../../../styles/base/variables';
+
+.header {
+  background-color: $gray;
+  display: flex;
+  align-items: center;
+  height: $header-height;
+  width: 100%;
+
+  &-heading {
+    display: flex;
+    align-items: center;
+  }
+
+  &-logo {
+    height: $header-height;
+    width: $header-height;
+  }
+}
