@@ -1,13 +1,21 @@
 @font-face {
-  font-family: 'JetBrains Mono Bold';
+  font-family: 'Gotham Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/GothamPro.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Gotham Pro';
   font-style: normal;
   font-weight: 700;
-  src: url('../fonts/JetBrainsMono-Bold.woff') format('woff');
+  src: url('../fonts/GothamPro-Bold.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'JetBrains Mono Regular';
+  font-family: 'Gotham Pro';
   font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/JetBrainsMono-Regular.woff') format('woff');
+  font-weight: 900;
+  src: url('../fonts/GothamPro-Black.woff') format('woff');
 }

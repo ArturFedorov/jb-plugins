@@ -7,6 +7,8 @@ import { RootState } from './store/rootReducer';
 import { IModel } from './shared/interfaces/IModel';
 import { setStatus } from './store/features/items/index';
 import { IError } from './shared/interfaces/IError';
+import asas from './assets/icons/jetbrains-logo.svg';
+import logo from './assets/icons/logo.svg';
 
 export interface IAppProps {
   items: IModel[];
@@ -35,9 +37,12 @@ const App: FunctionComponent<IAppProps> = ({
       <h1>Hello</h1>
       <h2>{status}</h2>
       <h2>Loading: {loading.toString()}</h2>
+      <img width="100" src={asas} />
+      <img width="50" src={logo} />
       <div>
         <button onClick={() => setStatusConnect('stop')}>Stop</button>
       </div>
+      <p>Hello askclakjcl lsjdjscjdsj</p>
       <p>{error?.title}</p>
       {items.map((item: IModel) => (
         <p key={item.id}>{item.id}</p>
