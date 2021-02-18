@@ -9,11 +9,11 @@
 
   &-heading {
     display: flex;
+    height: $header-height;
     align-items: center;
   }
 
   &-logo {
-    height: $header-height;
-    width: $header-height;
+    width: 73px;
   }
 }

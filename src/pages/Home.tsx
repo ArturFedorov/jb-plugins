@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Panel } from '../components/common/panel/Panel';
 import { fetchPlugins } from '../store/features/items/thunkActions';
 import { getPlugins } from '../store/features/items/selectors';
 import { RootState } from '../store/rootReducer';
@@ -18,7 +19,12 @@ const HomePage: FunctionComponent<IHomePageProps> = ({ plugins, fetchPluginsConn
 
   return (
     <div className="home-page">
-      <h1>Explore plugins for JetBrains Products</h1>
+      <div className="home-page-top">
+        <div className="home-page-background"></div>
+        <div className="container">
+          <Panel />
+        </div>
+      </div>
     </div>
   );
 };

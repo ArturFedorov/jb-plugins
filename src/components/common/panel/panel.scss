@@ -1,0 +1,17 @@
+@import '../../../styles/base/variables';
+
+.panel {
+  display: flex;
+  padding: $building-unit-x2 $building-unit-x4;
+  flex-direction: column;
+  background-color: $dark;
+  width: 100%;
+
+  &-header {
+    margin: 0;
+  }
+
+  &-section {
+    padding: $building-unit 0;
+  }
+}
