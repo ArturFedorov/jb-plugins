@@ -21,6 +21,8 @@ module.exports = {
     'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'none' }],
     'no-unused-vars': 'off',
     'no-use-before-define': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-use-before-define': ['error'],
     '@typescript-eslint/no-inferrable-types': 'error',
     'comma-dangle': ['error', 'never'],

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
-import './styles/index.scss';
 import './api/interceptors/index';
 
 const render = () => {
