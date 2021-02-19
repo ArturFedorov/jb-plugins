@@ -4,22 +4,24 @@ module.exports = function override(config, env) {
     .oneOf.filter((rule) => Array.isArray(rule.use));
 
   rules.forEach((rule) => {
-    rule.use.forEach((moduleLoader) => {
-      if (
-        moduleLoader.loader &&
-        moduleLoader.loader.includes('css-loader/dist') &&
-        typeof moduleLoader.options.modules === 'object'
-      ) {
-        // eslint-disable-next-line no-param-reassign
-        moduleLoader.options = {
-          ...moduleLoader.options,
-          modules: {
-            ...moduleLoader.options.modules,
-            exportLocalsConvention: 'camelCaseOnly'
-          }
-        };
-      }
+    const moduleLoader = rule.use.find((loader) => {
+      return (
+        loader.loader &&
+        loader.loader.includes('css-loader/dist') &&
+        typeof loader.options.modules === 'object'
+      );
     });
+
+    if (moduleLoader) {
+      // eslint-disable-next-line no-param-reassign
+      moduleLoader.options = {
+        ...moduleLoader.options,
+        modules: {
+          ...moduleLoader.options.modules,
+          exportLocalsConvention: 'camelCaseOnly'
+        }
+      };
+    }
   });
 
   return config;

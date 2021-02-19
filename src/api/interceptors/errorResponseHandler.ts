@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
 import { isAxiosRequestConfigExtended } from '../config/AxiosConfigExtension';
 import { IError } from '../../shared/interfaces/api/IError';
-import { setItemsError } from '../../store/features/plugins';
 import store from '../../store/store';
+import { setError, setLoading } from '../../store/features/base';
 
 export default function errorResponseHandler(error: AxiosError) {
   if (isAxiosRequestConfigExtended(error.config)) {
@@ -25,7 +25,8 @@ export default function errorResponseHandler(error: AxiosError) {
     errorMessage.title = 'Server error';
   }
 
-  store.dispatch(setItemsError(errorMessage));
+  store.dispatch(setError(errorMessage));
+  store.dispatch(setLoading(false));
 
   return Promise.reject(error);
 }

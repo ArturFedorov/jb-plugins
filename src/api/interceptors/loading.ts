@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { setItemsLoading } from '../../store/features/plugins';
+import { setLoading } from '../../store/features/base';
 import store from '../../store/store';
 import { isAxiosRequestConfigExtended } from '../config/AxiosConfigExtension';
 
@@ -21,13 +21,16 @@ axios.interceptors.request.use(
       return config;
     }
 
-    store.dispatch(setItemsLoading());
+    store.dispatch(setLoading(true));
     return config;
   },
   (error: Error) => Promise.reject(error)
 );
 
 axios.interceptors.response.use(
-  (response: AxiosLoadingResponse) => response,
+  (response: AxiosLoadingResponse) => {
+    store.dispatch(setLoading(false));
+    return response;
+  },
   (error: AxiosLoadingError) => Promise.reject(error)
 );

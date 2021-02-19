@@ -47,10 +47,10 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts,tsx}\" --fix",
-    "test": "react-scripts test",
-    "test:watch": "react-scripts test -- --watch",
+    "test": "react-app-rewired test",
+    "test:watch": "react-app-rewired test -- --watch",
     "eject": "react-scripts eject"
   },
   "browserslist": {
