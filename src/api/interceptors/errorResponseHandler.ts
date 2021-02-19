@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { isAxiosRequestConfigExtended } from '../config/AxiosConfigExtension';
 import { IError } from '../../shared/interfaces/api/IError';
-import { setItemsError } from '../../store/features/items';
+import { setItemsError } from '../../store/features/plugins';
 import store from '../../store/store';
 
 export default function errorResponseHandler(error: AxiosError) {

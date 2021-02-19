@@ -1,9 +1,10 @@
 import React, { FunctionComponent, ReactElement } from 'react';
-import './panel.scss';
+import classNames from 'classnames';
+import styles from './panel.module.scss';
 
 export interface IPanelProps {
   title?: string;
-  children?: ReactElement[];
+  children?: ReactElement<Element>;
 }
 
 export const Panel: FunctionComponent<IPanelProps> = ({
@@ -11,11 +12,11 @@ export const Panel: FunctionComponent<IPanelProps> = ({
   children
 }) => {
   return (
-    <div className="panel">
-      <div className="panel-section">
-        <h1 className="panel-header is-white-text">{title}</h1>
+    <div className={styles.panel}>
+      <div className={styles.panelSection}>
+        <h1 className={classNames(styles.panelHeader, 'is-white-text')}>{title}</h1>
       </div>
-      <div className="panel-section">{children}</div>
+      <div className={styles.panelSection}>{children}</div>
     </div>
   );
 };

@@ -1,15 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 import logo from '../../../assets/icons/logo.svg';
-import './header.scss';
+import styles from './header.module.scss';
 
 export const Header: FunctionComponent = () => {
   return (
-    <header className="header">
+    <header className={styles.header}>
       <div className="container">
-        <NavLink to="/" className="header-heading is-white-text">
+        <NavLink to="/" className={classNames(styles.headerHeading, 'is-white-text')}>
           <div className="column">
-            <img className="header-logo" src={logo} alt="logo" />
+            <img className={styles.headerLogo} src={logo} alt="logo" />
           </div>
           <div className="column">
             <h3>Marketplace</h3>

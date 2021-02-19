@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { setItemsLoading } from '../../store/features/items';
+import { setItemsLoading } from '../../store/features/plugins';
 import store from '../../store/store';
 import { isAxiosRequestConfigExtended } from '../config/AxiosConfigExtension';
 

@@ -1,0 +1,41 @@
+@import '../base/variables';
+
+.input {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  height: $building-unit-x3;
+  outline: none;
+  border: none;
+  width: 100%;
+  transition: $default-transition;
+
+  &:focus {
+    color: $black;
+    background-color: transparent;
+  }
+
+  &.with-icon {
+    margin-right: $building-unit-x2;
+  }
+
+  &-icon {
+    padding-left: $building-unit-x2;
+  }
+
+  &-field {
+    display: flex;
+    align-items: center;
+    padding: $building-unit-x1_5 $building-unit-x2;
+    border: none;
+  }
+
+  &-wrapper {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.04);
+    transition: $default-transition;
+
+    &.with-focus {
+      background-color: $white;
+    }
+  }
+}

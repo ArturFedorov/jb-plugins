@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit/';
-import pluginsReducer, { IPluginState } from './features/items/index';
+import pluginsReducer, { IPluginState } from './features/plugins/index';
 
 export interface RootState {
   plugins: IPluginState;
