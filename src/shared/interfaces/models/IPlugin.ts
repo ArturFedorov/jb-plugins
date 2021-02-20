@@ -2,7 +2,7 @@ export interface IPlugin {
   id: string;
   name: string;
   downloads: number;
-  date: Date;
+  date: string;
   author: string;
   rating: number;
   description: string;

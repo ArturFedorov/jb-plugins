@@ -10,6 +10,14 @@
 
 h1, h2, h3 {
   font-weight: 900;
+
+  &.is-lighter {
+    font-weight: 700;
+  }
+
+  &.marginless {
+    margin: 0;
+  }
 }
 
 h1,
@@ -35,6 +43,10 @@ input,
 select,
 p {
   font-size: $font-size-regular;
+
+  &.is-caption {
+    font-size: $font-size-caption;
+  }
 }
 
 .is-white-text {

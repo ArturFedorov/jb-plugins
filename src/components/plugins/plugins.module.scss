@@ -1,0 +1,70 @@
+@import '../../styles/base/variables';
+
+$card-width: 384px;
+$description-height: 148px;
+
+.plugin {
+  &-card {
+    border: 1px solid $light-gray;
+    color: $dark;
+    background-color: #fff;
+    margin: $building-unit-x3 $building-unit-x2 0 $building-unit-x2;
+
+    &-description {
+      border-top: 1px solid $light-gray;
+      color: $medium-gray;
+      height: $description-height;
+      overflow: hidden;
+      position: relative;
+      word-break: break-word;
+      padding: $building-unit-x3;
+      line-height: 24px;
+    }
+
+    &-footer {
+      border-top: 1px solid $light-gray;
+      color: $medium-gray;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: $building-unit-x2 $building-unit-x3;
+    }
+
+    &-header {
+      display: flex;
+      padding: $building-unit-x3;
+    }
+
+    &-icon {
+      width: $building-unit-x8;
+      height: $building-unit-x8;
+    }
+
+    &-link {
+      width: $card-width;
+      display: block;
+    }
+
+    &-section {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0 $building-unit;
+      padding: $building-unit 0;
+    }
+  }
+
+  &-list {
+    margin-bottom: $building-unit-x8;
+
+    &-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &-header {
+      font-weight: $font-bold;
+      margin: 0 $building-unit-x2;
+    }
+  }
+}
