@@ -9,6 +9,11 @@ $description-height: 148px;
     color: $dark;
     background-color: #fff;
     margin: $building-unit-x3 $building-unit-x2 0 $building-unit-x2;
+    transition: $default-transition;
+
+    &:hover {
+      border-color: $black;
+    }
 
     &-description {
       border-top: 1px solid $light-gray;
@@ -19,6 +24,11 @@ $description-height: 148px;
       word-break: break-word;
       padding: $building-unit-x3;
       line-height: 24px;
+      transition: $default-transition;
+
+      &-hovered {
+        color: $black;
+      }
     }
 
     &-footer {
@@ -28,6 +38,11 @@ $description-height: 148px;
       align-items: center;
       justify-content: space-between;
       padding: $building-unit-x2 $building-unit-x3;
+      transition: $default-transition;
+
+      &-hovered {
+        color: $black;
+      }
     }
 
     &-header {
@@ -38,6 +53,7 @@ $description-height: 148px;
     &-icon {
       width: $building-unit-x8;
       height: $building-unit-x8;
+      align-self: center;
     }
 
     &-link {

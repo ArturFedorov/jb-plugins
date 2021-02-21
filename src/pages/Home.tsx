@@ -8,7 +8,11 @@ import { LoaderIcon } from '../components/icons/LoaderIcon';
 import { PluginList } from '../components/plugins/plugin-list/PluginList';
 import { fetchPlugins } from '../store/features/plugins/thunkActions';
 import { getLoadingStatus } from '../store/features/base/selectors';
-import { getLatestPlugins, getMostPopularPlugins } from '../store/features/plugins/selectors';
+import {
+  getLatestPlugins,
+  getMostPopularPlugins,
+  getTotalPluginCount
+} from '../store/features/plugins/selectors';
 import { setSearchValue } from '../store/features/plugins';
 import { RootState } from '../store/rootReducer';
 import { IPlugin } from '../shared/interfaces/models/IPlugin';
@@ -16,6 +20,7 @@ import './home.scss';
 
 export interface IHomePageProps {
   plugins: IPlugin[];
+  pluginsTotalCount: number;
   latestPlugins: IPlugin[];
   loadingFromApi: boolean;
   fetchPluginsConnect: () => void;
@@ -24,6 +29,7 @@ export interface IHomePageProps {
 
 const HomePage: FunctionComponent<IHomePageProps> = ({
   plugins,
+  pluginsTotalCount,
   latestPlugins,
   loadingFromApi,
   fetchPluginsConnect,
@@ -49,7 +55,7 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
         <div className="container">
           <Panel>
             <Input
-              placeholder={`Search all ${plugins.length} IntelliJ Platform plugins`}
+              placeholder={`Search all ${pluginsTotalCount} IntelliJ Platform plugins`}
               icon={loadingFromApi || isLoading ? <LoaderIcon /> : <SearchIcon />}
               onChange={(event) => {
                 setIsLoading(true);
@@ -76,6 +82,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state: RootState) => ({
   plugins: getMostPopularPlugins(state.plugins),
+  pluginsTotalCount: getTotalPluginCount(state.plugins),
   latestPlugins: getLatestPlugins(state.plugins),
   loadingFromApi: getLoadingStatus(state.base)
 });
