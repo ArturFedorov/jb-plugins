@@ -1,0 +1,20 @@
+@import '../../../styles/base/variables';
+
+.button {
+  border-radius: $building-unit-x3;
+  border: none;
+  cursor: pointer;
+  font-weight: $font-regular;
+  padding: $building-unit-x1_5 $building-unit-x4;
+  outline: none;
+  transition: $default-transition;
+
+  &:hover {
+    background-color: $light-blue;
+  }
+
+  &-action {
+    background-color: $blue;
+    color: $white;
+  }
+}
