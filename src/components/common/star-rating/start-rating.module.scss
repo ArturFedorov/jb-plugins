@@ -1,0 +1,17 @@
+@import '../../../styles/base/variables';
+
+.star-icon {
+  display: flex;
+
+  &-item {
+    padding:  $building-unit-x0_5;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}

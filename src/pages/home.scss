@@ -18,6 +18,11 @@ $home-top-padding-top: 100px;
     transition: $default-transition;
   }
 
+  &-content {
+    margin-top: $building-unit-x6;
+    padding: 0 $building-unit-x3;
+  }
+
   &-top {
     padding-top: $home-top-padding-top;
     position: relative;

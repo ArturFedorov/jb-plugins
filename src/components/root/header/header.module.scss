@@ -7,6 +7,11 @@
   height: $header-height;
   width: 100%;
 
+  &-content {
+    display: flex;
+    align-items: center;
+  }
+
   &-heading {
     display: flex;
     height: $header-height;
@@ -15,5 +20,11 @@
 
   &-logo {
     width: 73px;
+  }
+
+  &-section {
+    &:last-child {
+      margin-left: auto;
+    }
   }
 }
