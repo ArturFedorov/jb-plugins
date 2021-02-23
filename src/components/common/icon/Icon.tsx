@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 
 export interface IconProps {
   height?: number;
@@ -6,7 +6,7 @@ export interface IconProps {
   fill?: string;
   stroke?: string;
   viewBox?: string;
-  children?: ReactElement<Element>;
+  children?: ReactNode;
 }
 
 export const Icon: FunctionComponent<IconProps> = ({
