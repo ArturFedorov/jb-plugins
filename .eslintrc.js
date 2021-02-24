@@ -28,7 +28,15 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
-    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsForRegex: ['^state'] }]
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-param-reassign': [
+      'error',
+      { props: true, ignorePropertyModificationsForRegex: ['^state'] }
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.test.ts', '**/*.test.tsx', '**/setupTests.ts'] }
+    ]
   },
   settings: {
     'import/resolver': {

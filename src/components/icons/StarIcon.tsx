@@ -6,7 +6,7 @@ export interface IStarRatingProps extends IconProps {
   clipPathWidth?: number;
 }
 
-export const StartIcon: FunctionComponent<IStarRatingProps> = (props) => {
+export const StarIcon: FunctionComponent<IStarRatingProps> = (props) => {
   const uniqueId = generateUniqueId();
 
   return (

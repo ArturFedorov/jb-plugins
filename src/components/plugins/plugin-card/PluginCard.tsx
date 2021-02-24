@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 import { StarRating } from '../../common/star-rating/StarRating';
 import styles from '../plugins.module.scss';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
@@ -15,8 +16,8 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
   const [cardHovered, setCardHovered] = useState<boolean>(false);
 
   return (
-    <a
-      href="/"
+    <NavLink
+      to="/"
       className={styles.pluginCardLink}
       onMouseEnter={() => setCardHovered(true)}
       onMouseLeave={() => setCardHovered(false)}
@@ -45,6 +46,6 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
           <span className="is-caption">{dateFormat(plugin.date)}</span>
         </div>
       </div>
-    </a>
+    </NavLink>
   );
 };
