@@ -1,8 +1,9 @@
 @import '../../../styles/base/variables';
 
 .button {
+  background-color: transparent;
+  border: 1px solid $light-gray;
   border-radius: $building-unit-x3;
-  border: none;
   cursor: pointer;
   font-weight: $font-regular;
   padding: $building-unit-x1_5 $building-unit-x4;
@@ -10,11 +11,18 @@
   transition: $default-transition;
 
   &:hover {
-    background-color: $light-blue;
+    color: $black;
+    background-color: $light-gray;
   }
 
   &-action {
+    border: none;
     background-color: $blue;
     color: $white;
+
+    &:hover {
+      color: $white;
+      background-color: $light-blue;
+    }
   }
 }

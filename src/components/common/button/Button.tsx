@@ -14,7 +14,8 @@ export const Button: FunctionComponent<IButtonProps> = ({
   children
 }) => {
   const buttonType = {
-    [ButtonType.ACTION]: style.buttonAction
+    [ButtonType.ACTION]: style.buttonAction,
+    [ButtonType.DEFAULT]: style.buttonDefault
   };
 
   return (

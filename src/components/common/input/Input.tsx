@@ -7,18 +7,25 @@ export interface InputProps {
   value?: string;
   icon?: ReactElement;
   onChange: (value: string) => void;
+  withBorder?: boolean;
 }
 
 export const Input: FunctionComponent<InputProps> = ({
   placeholder = 'Input text',
   value,
   icon,
-  onChange
+  onChange,
+  withBorder = false
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
-    <div className={classNames(styles.inputWrapper, { [styles.withFocus]: isFocused })}>
+    <div
+      className={classNames(styles.inputWrapper, {
+        [styles.withFocus]: isFocused,
+        [styles.withBorder]: withBorder
+      })}
+    >
       <div className={styles.inputField}>
         <input
           type="text"
