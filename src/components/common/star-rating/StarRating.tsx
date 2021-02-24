@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { StartIcon } from '../../icons/StarIcon';
+import { StarIcon } from '../../icons/StarIcon';
 import styles from './start-rating.module.scss';
 
 export interface IStarRatingProps {
@@ -23,14 +23,16 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
   };
 
   if (starCount > MAX_RATING_COUNT || starCount < MIN_RATING_COUNT) {
-    throw Error('Please, provide starCount value between 0 and 10');
+    throw Error(
+      `Please, provide starCount value between ${MIN_RATING_COUNT} and ${MAX_RATING_COUNT}`
+    );
   }
 
   return (
     <div className={styles.starIcon}>
       {createArrayFromNumber(starCount).map((item) => (
         <div className={styles.starIconItem} key={item}>
-          <StartIcon clipPathWidth={calculateClipPathRatio(item) * STAR_ICON_WIDTH} />
+          <StarIcon clipPathWidth={calculateClipPathRatio(item) * STAR_ICON_WIDTH} />
         </div>
       ))}
     </div>
