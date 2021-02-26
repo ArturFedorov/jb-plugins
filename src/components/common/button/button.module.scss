@@ -9,6 +9,8 @@
   padding: $building-unit-x1_5 $building-unit-x4;
   outline: none;
   transition: $default-transition;
+  margin: 0 $building-unit-x0_5;
+  min-width: 150px;
 
   &:hover {
     color: $black;

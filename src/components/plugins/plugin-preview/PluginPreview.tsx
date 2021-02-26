@@ -1,21 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { PluginCard } from '../plugin-card/PluginCard';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
+import styles from './plugin-preview.module.scss';
 
-export const PluginPreview: FunctionComponent = () => {
-  const plugin: IPlugin = {
-    id: '',
-    downloads: 0,
-    rating: 0,
-    date: new Date().toString(),
-    name: '',
-    fullDescription: '',
-    description: '',
-    author: '',
-    icon: ''
-  };
+export const PluginPreview: FunctionComponent<{ plugin: IPlugin }> = ({ plugin }) => {
   return (
-    <div>
+    <div className={styles.pluginPreview}>
+      <h3>Card preview</h3>
       <PluginCard plugin={plugin} />
     </div>
   );

@@ -35,7 +35,7 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
             [styles.pluginCardDescriptionHovered]: cardHovered
           })}
         >
-          <span>{plugin.fullDescription}</span>
+          <span>{plugin.description}</span>
         </div>
         <div
           className={classNames(styles.pluginCardFooter, {

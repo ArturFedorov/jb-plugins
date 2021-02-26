@@ -55,6 +55,7 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
         <div className="container">
           <Panel>
             <Input
+              isInverted={true}
               placeholder={`Search all ${pluginsTotalCount} IntelliJ Platform plugins`}
               icon={loadingFromApi || isLoading ? <LoaderIcon /> : <SearchIcon />}
               onChange={(event) => {

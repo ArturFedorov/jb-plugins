@@ -20,6 +20,10 @@ h1, h2, h3 {
   }
 }
 
+.h0 {
+  font-size: $font-size-h0;
+}
+
 h1,
 .h1 {
   font-size: $font-size-h1;
@@ -33,6 +37,10 @@ h2,
 h3,
 .h3 {
   font-size: $font-size-h3;
+}
+
+label {
+  font-weight: $font-medium;
 }
 
 span,

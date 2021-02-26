@@ -1,4 +1,5 @@
 export interface IPlugin {
+  [key: string]: string | number;
   id: string;
   name: string;
   downloads: number;

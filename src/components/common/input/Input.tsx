@@ -3,11 +3,15 @@ import classNames from 'classnames';
 import styles from '../../../styles/components/input.module.scss';
 
 export interface InputProps {
-  placeholder?: string;
-  value?: string;
+  isInverted?: boolean;
   icon?: ReactElement;
   onChange: (value: string) => void;
-  withBorder?: boolean;
+  placeholder?: string;
+  required?: boolean;
+  maxLength?: number;
+  type?: string;
+  value?: string;
+  withError?: boolean;
 }
 
 export const Input: FunctionComponent<InputProps> = ({
@@ -15,7 +19,11 @@ export const Input: FunctionComponent<InputProps> = ({
   value,
   icon,
   onChange,
-  withBorder = false
+  isInverted = false,
+  maxLength,
+  required = false,
+  type = 'text',
+  withError = false
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
@@ -23,15 +31,18 @@ export const Input: FunctionComponent<InputProps> = ({
     <div
       className={classNames(styles.inputWrapper, {
         [styles.withFocus]: isFocused,
-        [styles.withBorder]: withBorder
+        [styles.inverted]: isInverted,
+        [styles.error]: withError
       })}
     >
       <div className={styles.inputField}>
         <input
-          type="text"
+          type={type}
           placeholder={placeholder}
           value={value}
           className={classNames(styles.input, { [styles.withIcon]: Boolean(icon) })}
+          maxLength={maxLength}
+          required={required}
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
           onChange={(event) => onChange(event.target.value)}

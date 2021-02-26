@@ -2,7 +2,7 @@
 
 .input {
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  color: $dark;
   height: $building-unit-x3;
   outline: none;
   border: none;
@@ -30,12 +30,25 @@
   }
 
   &-wrapper {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid $light-gray;
     transition: $default-transition;
 
-    &.with-border {
-      border: 1px solid $light-gray;
+    &.error {
+      border-color: $crimson;
+      border-left: 10px solid $crimson;
+    }
+
+    &.inverted {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.04);
+
+      .input {
+        color: rgba(255, 255, 255, 0.8);
+
+        &:focus {
+          color: $black;
+        }
+      }
     }
 
     &.with-focus {

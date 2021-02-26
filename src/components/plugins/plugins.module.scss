@@ -48,6 +48,9 @@ $description-height: 148px;
     &-header {
       display: flex;
       padding: $building-unit-x3;
+      word-break: break-all;
+      max-height: 120px;
+      overflow: hidden;
     }
 
     &-icon {

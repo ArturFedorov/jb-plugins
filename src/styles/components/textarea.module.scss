@@ -1,0 +1,7 @@
+@import '../base/variables';
+
+.textarea {
+  min-height: 250px;
+  resize: vertical;
+  padding: $building-unit-x2;
+}

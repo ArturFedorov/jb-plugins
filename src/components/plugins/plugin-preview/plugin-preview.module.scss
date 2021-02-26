@@ -1,0 +1,7 @@
+@import '../../../styles/base/variables';
+
+.plugin-preview {
+  display: flex;
+  flex-direction: column;
+  padding: $building-unit-x4;
+}
