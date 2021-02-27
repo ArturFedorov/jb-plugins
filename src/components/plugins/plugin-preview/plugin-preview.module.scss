@@ -2,6 +2,16 @@
 
 .plugin-preview {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  padding: $building-unit-x4;
+  padding: 0 $building-unit-x4;
+
+  &-content {
+    display: flex;
+    height: 100%;
+  }
+
+  &-header {
+    margin: $building-unit-x2 0 $building-unit-x5 $building-unit-x2;
+  }
 }

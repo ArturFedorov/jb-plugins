@@ -1,23 +1,23 @@
 @import '../../../styles/base/variables';
 
 .plugin-add {
+  background-color: rgba(39,40,44,.05);
   position: relative;
   float: left;
   width: 100%;
+  min-height: 100vh;
 
   &-content {
     display: flex;
-    border-radius: $building-unit-x0_5;
     background-color: $white;
-    margin-top: 400px;
-    padding: $building-unit-x6;
+    border: 1px solid $light-gray;
+    margin-top: 50px;
+    padding: $building-unit-x3 $building-unit-x6;
   }
 
   &-header {
     color: $dark;
-    // position: absolute;
-    // top: -10px;
-    padding-left: $building-unit-x4;
+    margin: $building-unit-x2 0 $building-unit-x4 0;
   }
 
   &-top {

@@ -12,7 +12,7 @@ const plugins = createSlice({
   name: 'plugins',
   initialState: {
     plugins: [],
-    plugin: { date: new Date().toString(), downloads: 0 } as IPlugin,
+    plugin: { date: new Date().toString(), downloads: 0, icon: '' } as IPlugin,
     searchValue: '',
     pluginsTotalCount: 0
   },

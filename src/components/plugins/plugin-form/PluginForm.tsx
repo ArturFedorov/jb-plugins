@@ -9,12 +9,14 @@ import { Input } from '../../common/input/Input';
 import { Button } from '../../common/button/Button';
 import { ButtonType } from '../../common/button/ButtonType';
 import { setPlugin } from '../../../store/features/plugins';
-import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
+import { INewPlugin, IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { DefaultsUtil } from '../../../shared/utils/defaults.util';
+import { addPlugin } from '../../../store/features/plugins/thunkActions';
 
 const PluginForm: FunctionComponent<{
+  addPluginConnect: (newPlugin: INewPlugin) => void;
   setPluginConnect: ActionCreatorWithPayload<IPlugin, string>;
-}> = ({ setPluginConnect }) => {
+}> = ({ addPluginConnect, setPluginConnect }) => {
   const plugin = DefaultsUtil.defaultPlugin;
 
   useEffect(() => {
@@ -28,13 +30,18 @@ const PluginForm: FunctionComponent<{
     setPluginConnect(plugin);
   };
 
+  const submitPluginForm = (event: Event) => {
+    event.preventDefault();
+    addPluginConnect(plugin);
+  };
+
   return (
     <form className={styles.pluginForm}>
       <div className={styles.pluginFormSection}>
         <label className={styles.pluginFormLabel}>Name</label>
         <Input
           required={true}
-          maxLength={50}
+          maxLength={32}
           placeholder="Plugin name"
           onChange={(value) => onChange('name', value)}
         />
@@ -62,7 +69,9 @@ const PluginForm: FunctionComponent<{
         </div>
       </div>
       <div>
-        <Button type={ButtonType.ACTION}>Add plugin</Button>
+        <Button type={ButtonType.ACTION} onClick={submitPluginForm}>
+          Add plugin
+        </Button>
         <Button type={ButtonType.DEFAULT}>Cancel</Button>
       </div>
     </form>
@@ -70,6 +79,7 @@ const PluginForm: FunctionComponent<{
 };
 
 const mapDispatchToProps = {
+  addPluginConnect: addPlugin,
   setPluginConnect: setPlugin
 };
 

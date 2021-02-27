@@ -14,6 +14,7 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
 
   const createArrayFromNumber = (arrayLength: number) => Array.from(Array(arrayLength).keys());
   const calculateClipPathRatio = (index: number) => {
+    if (!rating || rating === 0) return 0;
     const itemRating = index + 1;
     if (itemRating > rating) {
       return itemRating - rating > 1 ? 0 : Math.abs(itemRating - rating - 1);

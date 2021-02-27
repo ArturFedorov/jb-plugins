@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { StarRating } from '../../common/star-rating/StarRating';
@@ -14,6 +14,16 @@ export interface IPluginCardProps {
 
 export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
   const [cardHovered, setCardHovered] = useState<boolean>(false);
+  const [imgSrc, setImgSrc] = useState(plugin.icon);
+
+  useEffect(() => {
+    setImgSrc(plugin.icon);
+  }, [plugin]);
+
+  // fallback mechanism for images
+  const onImageLoadError = () => {
+    setImgSrc(pluginIcon);
+  };
 
   return (
     <NavLink
@@ -24,7 +34,12 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
     >
       <div className={styles.pluginCard}>
         <div className={styles.pluginCardHeader}>
-          <img className={styles.pluginCardIcon} src={pluginIcon} alt="plugin" />
+          <img
+            className={styles.pluginCardIcon}
+            src={imgSrc}
+            onError={onImageLoadError}
+            alt="plugin"
+          />
           <div className={styles.pluginCardSection}>
             <h3 className="is-lighter marginless">{plugin.name}</h3>
             <StarRating rating={plugin.rating} />

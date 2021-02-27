@@ -5,7 +5,7 @@ import style from './button.module.scss';
 
 export interface IButtonProps {
   type: ButtonType;
-  onClick?: () => void;
+  onClick?: (event?: any) => void;
 }
 
 export const Button: FunctionComponent<IButtonProps> = ({
