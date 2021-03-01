@@ -7,12 +7,15 @@
   width: 100%;
   min-height: 100vh;
 
+  &-form {
+    padding: $building-unit-x3 0 $building-unit-x3 $building-unit-x6;
+  }
+
   &-content {
     display: flex;
     background-color: $white;
     border: 1px solid $light-gray;
     margin-top: 50px;
-    padding: $building-unit-x3 $building-unit-x6;
   }
 
   &-header {

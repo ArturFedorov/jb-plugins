@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
@@ -12,64 +13,130 @@ import { setPlugin } from '../../../store/features/plugins';
 import { INewPlugin, IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { DefaultsUtil } from '../../../shared/utils/defaults.util';
 import { addPlugin } from '../../../store/features/plugins/thunkActions';
+import { validURIRegExp } from '../../../shared/utils/format.util';
 
 const PluginForm: FunctionComponent<{
   addPluginConnect: (newPlugin: INewPlugin) => void;
   setPluginConnect: ActionCreatorWithPayload<IPlugin, string>;
 }> = ({ addPluginConnect, setPluginConnect }) => {
+  const { control, handleSubmit, errors, watch } = useForm();
   const plugin = DefaultsUtil.defaultPlugin;
+  const name = watch('name');
+  const author = watch('author');
+  const icon = watch('icon') || '';
+  const description = watch('description');
 
   useEffect(() => {
+    plugin.author = author;
+    plugin.name = name;
+    plugin.icon = icon;
+    plugin.description = description;
+
+    setPluginConnect(plugin);
+
     return () => {
       setPluginConnect(DefaultsUtil.defaultPlugin);
     };
-  }, [setPluginConnect]);
+  }, [setPluginConnect, name, author, icon, plugin, description]);
 
-  const onChange = (key: string, value: string) => {
-    plugin[key] = value;
-    setPluginConnect(plugin);
-  };
-
-  const submitPluginForm = (event: Event) => {
-    event.preventDefault();
+  const submitPluginForm = (data: INewPlugin) => {
     addPluginConnect(plugin);
   };
 
   return (
-    <form className={styles.pluginForm}>
+    <form className={styles.pluginForm} onSubmit={handleSubmit(submitPluginForm)}>
       <div className={styles.pluginFormSection}>
         <label className={styles.pluginFormLabel}>Name</label>
-        <Input
-          required={true}
-          maxLength={32}
-          placeholder="Plugin name"
-          onChange={(value) => onChange('name', value)}
+        <Controller
+          name="name"
+          control={control}
+          defaultValue={plugin.name}
+          rules={{ required: true, maxLength: 32 }}
+          render={({ onChange, value }) => (
+            <Input
+              name="name"
+              value={value}
+              placeholder="Plugin name"
+              onChange={onChange}
+              withError={errors.name}
+            />
+          )}
         />
+        {errors.name && errors.name.type === 'required' && (
+          <p className="is-caption is-error-text">Name is required</p>
+        )}
+
+        {errors.name && errors.name.type === 'maxLength' && (
+          <p className="is-caption is-error-text">Name is maximum 32 characters</p>
+        )}
       </div>
       <div className={styles.pluginFormSection}>
         <label className={styles.pluginFormLabel}>Author name</label>
-        <Input placeholder="Author name" onChange={(value) => onChange('author', value)} />
+        <Controller
+          name="author"
+          control={control}
+          defaultValue={plugin.author}
+          rules={{ required: true }}
+          render={({ onChange, value }) => (
+            <Input
+              name="author"
+              value={value}
+              placeholder="Author name"
+              onChange={onChange}
+              withError={errors.author}
+            />
+          )}
+        />
+
+        {errors.author && <p className="is-caption is-error-text">Author is required</p>}
       </div>
       <div className={styles.pluginFormSection}>
         <label className={styles.pluginFormLabel}>Icon</label>
-        <Input
-          type="url"
-          placeholder="URL to an Icon"
-          onChange={(value) => onChange('icon', value)}
+        <Controller
+          name="icon"
+          control={control}
+          defaultValue={plugin.icon}
+          rules={{ required: true, pattern: validURIRegExp }}
+          render={({ onChange, value }) => (
+            <Input
+              type="url"
+              name="icon"
+              value={value}
+              placeholder="URL to an Icon"
+              onChange={onChange}
+              withError={errors.icon}
+            />
+          )}
         />
+
+        {errors.icon && errors.icon.type === 'required' && (
+          <p className="is-caption is-error-text">Icon url is required</p>
+        )}
+
+        {errors.icon && errors.icon.type === 'pattern' && (
+          <p className="is-caption is-error-text">Url must be valid</p>
+        )}
       </div>
       <div className={styles.pluginFormSection}>
         <label className={styles.pluginFormLabel}>Description</label>
-        <div className={input.inputWrapper}>
-          <textarea
-            placeholder="Optional"
-            className={classNames(input.input, textarea.textarea)}
-            onChange={(event) => onChange('description', event.target.value)}
-          />
-        </div>
+        <Controller
+          name="description"
+          control={control}
+          defaultValue={plugin.description}
+          render={({ onChange, value }) => (
+            <div className={input.inputWrapper}>
+              <textarea
+                value={value}
+                placeholder="Optional"
+                className={classNames(input.input, textarea.textarea)}
+                onChange={onChange}
+              />
+            </div>
+          )}
+        />
       </div>
       <div>
-        <Button type={ButtonType.ACTION} onClick={submitPluginForm}>
+        <Button type={ButtonType.ACTION} onClick={handleSubmit(submitPluginForm)}>
           Add plugin
         </Button>
         <Button type={ButtonType.DEFAULT}>Cancel</Button>

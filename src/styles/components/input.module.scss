@@ -36,6 +36,10 @@
     &.error {
       border-color: $crimson;
       border-left: 10px solid $crimson;
+
+      input {
+        color: $crimson;
+      }
     }
 
     &.inverted {

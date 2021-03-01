@@ -11,15 +11,9 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 const PluginAddPage: FunctionComponent<{ plugin: IPlugin }> = ({ plugin }) => {
   return (
     <div className={styles.pluginAdd}>
-      {/* <div className={styles.pluginAddTop}></div> */}
-      {/* <div className={styles.pluginAddTopBg}> */}
-      {/*  <div className="container"> */}
-      {/*    <h1 className={classNames(styles.pluginAddHeader, 'h0')}>Add Plugin</h1> */}
-      {/*  </div> */}
-      {/* </div> */}
       <div className="container">
         <div className={styles.pluginAddContent}>
-          <div className="column is-half is-direction-column">
+          <div className={classNames('column is-half is-direction-column', styles.pluginAddForm)}>
             <h2 className={styles.pluginAddHeader}>Add plugin</h2>
             <PluginForm />
           </div>

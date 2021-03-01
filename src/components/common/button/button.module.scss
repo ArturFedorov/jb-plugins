@@ -26,5 +26,11 @@
       color: $white;
       background-color: $light-blue;
     }
+
+    &:disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.5;
+    }
   }
 }

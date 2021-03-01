@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { StarRating } from '../../common/star-rating/StarRating';
 import styles from '../plugins.module.scss';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
-import pluginIcon from '../../../assets/icons/pluginIcon.svg';
+import pluginIcon from '../../../assets/icons/jetbrains-logo.svg';
 import dateFormat from '../../../shared/utils/date.util';
 import { formatNumber } from '../../../shared/utils/format.util';
 
@@ -18,7 +18,7 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
 
   useEffect(() => {
     setImgSrc(plugin.icon);
-  }, [plugin]);
+  }, [plugin.icon]);
 
   // fallback mechanism for images
   const onImageLoadError = () => {

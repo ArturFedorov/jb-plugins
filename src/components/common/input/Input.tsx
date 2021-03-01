@@ -7,9 +7,8 @@ export interface InputProps {
   icon?: ReactElement;
   onChange: (value: string) => void;
   placeholder?: string;
-  required?: boolean;
-  maxLength?: number;
   type?: string;
+  name?: string;
   value?: string;
   withError?: boolean;
 }
@@ -20,8 +19,7 @@ export const Input: FunctionComponent<InputProps> = ({
   icon,
   onChange,
   isInverted = false,
-  maxLength,
-  required = false,
+  name,
   type = 'text',
   withError = false
 }) => {
@@ -40,9 +38,8 @@ export const Input: FunctionComponent<InputProps> = ({
           type={type}
           placeholder={placeholder}
           value={value}
+          name={name}
           className={classNames(styles.input, { [styles.withIcon]: Boolean(icon) })}
-          maxLength={maxLength}
-          required={required}
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
           onChange={(event) => onChange(event.target.value)}

@@ -2,12 +2,15 @@
 
 .plugin-preview {
   display: flex;
+  background-color: #eee;
   height: 100%;
   flex-direction: column;
   padding: 0 $building-unit-x4;
 
   &-content {
     display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
   }
 

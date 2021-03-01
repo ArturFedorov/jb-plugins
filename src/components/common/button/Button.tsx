@@ -5,10 +5,12 @@ import style from './button.module.scss';
 
 export interface IButtonProps {
   type: ButtonType;
+  disabled?: boolean;
   onClick?: (event?: any) => void;
 }
 
 export const Button: FunctionComponent<IButtonProps> = ({
+  disabled = false,
   type = ButtonType.ACTION,
   onClick,
   children
@@ -19,7 +21,11 @@ export const Button: FunctionComponent<IButtonProps> = ({
   };
 
   return (
-    <button className={classNames(style.button, buttonType[type])} onClick={onClick}>
+    <button
+      disabled={disabled}
+      className={classNames(style.button, buttonType[type])}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
