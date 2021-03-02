@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { useDebounce } from 'use-debounce';
 import { Panel } from '../components/common/panel/Panel';
 import { Input } from '../components/common/input/Input';
-import { SearchIcon } from '../components/icons/SearchIcon';
-import { LoaderIcon } from '../components/icons/LoaderIcon';
+import { SearchIcon } from '../components/common/icons/SearchIcon';
+import { LoaderIcon } from '../components/common/icons/LoaderIcon';
 import { PluginList } from '../components/plugins/plugin-list/PluginList';
 import { fetchPlugins } from '../store/features/plugins/thunkActions';
 import { getLoadingStatus } from '../store/features/base/selectors';
@@ -55,6 +55,7 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
         <div className="container">
           <Panel>
             <Input
+              isInverted={true}
               placeholder={`Search all ${pluginsTotalCount} IntelliJ Platform plugins`}
               icon={loadingFromApi || isLoading ? <LoaderIcon /> : <SearchIcon />}
               onChange={(event) => {

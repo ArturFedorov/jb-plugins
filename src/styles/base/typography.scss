@@ -8,7 +8,7 @@
   font-family: "Gotham Pro",  Helvetica;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h5 {
   font-weight: 900;
 
   &.is-lighter {
@@ -20,9 +20,18 @@ h1, h2, h3 {
   }
 }
 
+.h0 {
+  font-size: $font-size-h0;
+}
+
 h1,
 .h1 {
   font-size: $font-size-h1;
+
+  @media ($tablet) {
+    font-size: $font-size-h3;
+    line-height: 120%;
+  }
 }
 
 h2,
@@ -33,6 +42,15 @@ h2,
 h3,
 .h3 {
   font-size: $font-size-h3;
+}
+
+h5,
+.h5 {
+  font-size: $font-size-caption;
+}
+
+label {
+  font-weight: $font-medium;
 }
 
 span,
@@ -51,4 +69,13 @@ p {
 
 .is-white-text {
   color: $white;
+}
+
+.is-gray-text {
+  color: $light-gray;
+}
+
+
+.is-error-text {
+  color: $crimson;
 }

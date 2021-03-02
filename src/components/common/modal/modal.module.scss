@@ -1,0 +1,46 @@
+@import '../../../styles/base/variables';
+
+.module {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(39,40,44,.7);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: $default-transition;
+  z-index: $top-z-index;
+
+  &-header {
+    margin: 0 0 $building-unit-x4 0;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $white;
+    min-height: 204px;
+    width: 796px;
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 3rem 3rem 2rem 3rem;
+    position: relative;
+    z-index: $top-z-index;
+
+    @media ($tablet) {
+      margin: 0 $building-unit-x4;
+      width: 100%;
+    }
+
+    @media ($mobile) {
+      padding: 1rem;
+    }
+  }
+
+  &-message {
+    color: $medium-gray
+  }
+}
+

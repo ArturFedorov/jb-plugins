@@ -1,0 +1,20 @@
+@import '../../../styles/base/variables';
+
+.plugin-form {
+  display: flex;
+  flex-direction: column;
+  padding-right: $building-unit-x4;
+
+  @media ($mobile) {
+    padding-right: 0;
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: $building-unit;
+  }
+
+  &-section {
+    margin-bottom: $building-unit-x4;
+  }
+}

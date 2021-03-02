@@ -5,20 +5,27 @@ import style from './button.module.scss';
 
 export interface IButtonProps {
   type: ButtonType;
-  onClick?: () => void;
+  disabled?: boolean;
+  onClick?: (event?: any) => void;
 }
 
 export const Button: FunctionComponent<IButtonProps> = ({
+  disabled = false,
   type = ButtonType.ACTION,
   onClick,
   children
 }) => {
   const buttonType = {
-    [ButtonType.ACTION]: style.buttonAction
+    [ButtonType.ACTION]: style.buttonAction,
+    [ButtonType.DEFAULT]: style.buttonDefault
   };
 
   return (
-    <button className={classNames(style.button, buttonType[type])} onClick={onClick}>
+    <button
+      disabled={disabled}
+      className={classNames(style.button, buttonType[type])}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

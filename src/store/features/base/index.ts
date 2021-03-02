@@ -3,23 +3,23 @@ import { IError } from '../../../shared/interfaces/api/IError';
 
 export interface IBaseState {
   loading: boolean;
-  error: IError | null;
+  error: IError | undefined;
 }
 
 const base = createSlice({
   name: 'base',
   initialState: {
     loading: false,
-    error: null
+    error: undefined
   },
   reducers: {
     setLoading(state: IBaseState, action: PayloadAction<boolean>) {
       if (action.payload) {
-        state.error = null;
+        state.error = undefined;
       }
       state.loading = action.payload;
     },
-    setError(state: IBaseState, action: PayloadAction<IError>) {
+    setError(state: IBaseState, action: PayloadAction<IError | undefined>) {
       state.error = action.payload;
     }
   }

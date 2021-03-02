@@ -1,3 +1,4 @@
 export enum ButtonType {
-  ACTION = 'action'
+  ACTION = 'action',
+  DEFAULT = 'default'
 }

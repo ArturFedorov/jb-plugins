@@ -2,6 +2,21 @@
   display: flex;
   margin: 0 $horizontal-gutter;
 
+  &.is-half {
+    flex: 1;
+    width: 50%;
+  }
+
+  &.is-tablet-full-width {
+    @media ($tablet) {
+      width: 100%;
+    }
+  }
+
+  &.is-direction-column {
+    flex-direction: column;
+  }
+
   &:first-child {
     margin-left: 0;
   }
