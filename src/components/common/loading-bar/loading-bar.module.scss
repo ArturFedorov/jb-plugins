@@ -1,0 +1,50 @@
+@import '../../../styles/base/variables';
+
+$loading-bar-height: 3px;
+$animation-time: 2.5s;
+$long-animation-time: 10s;
+$animation-delay: $animation-time;
+
+.loading {
+  &-bar {
+    margin: $building-unit 0;
+    width: 100%;
+    height: $loading-bar-height;
+    background-color: $blue;
+    z-index: 10;
+
+    &-loading {
+      animation: loading-bar $animation-time forwards,
+      loading-bar-long $long-animation-time $animation-delay linear infinite;
+    }
+  }
+}
+
+.success {
+  background-color: $green;
+}
+
+.error {
+  background-color: $crimson;
+}
+
+@keyframes loading-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 95%;
+  }
+}
+
+@keyframes loading-bar-long {
+  0% {
+    width: 95%;
+  }
+  90% {
+    width: 98%;
+  }
+  100% {
+    width: 100%;
+  }
+}

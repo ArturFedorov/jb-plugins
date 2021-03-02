@@ -62,6 +62,10 @@ $description-height: 148px;
     &-link {
       width: $card-width;
       display: block;
+
+      @media ($mobile) {
+        width: 100%;
+      }
     }
 
     &-section {
@@ -79,11 +83,19 @@ $description-height: 148px;
     &-content {
       display: flex;
       flex-wrap: wrap;
+
+      @media ($tablet) {
+        justify-content: center;
+      }
     }
 
     &-header {
       font-weight: $font-bold;
       margin: 0 $building-unit-x2;
+
+      @media ($tablet) {
+        text-align: center;
+      }
     }
   }
 }

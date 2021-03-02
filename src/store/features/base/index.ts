@@ -19,7 +19,7 @@ const base = createSlice({
       }
       state.loading = action.payload;
     },
-    setError(state: IBaseState, action: PayloadAction<IError>) {
+    setError(state: IBaseState, action: PayloadAction<IError | undefined>) {
       state.error = action.payload;
     }
   }

@@ -7,7 +7,7 @@ export interface IModalProps {
   header: string;
   message: string;
   onClose: () => void;
-  children?: ReactElement<Element>[];
+  children?: ReactElement<Element>;
 }
 
 export const Modal: FunctionComponent<IModalProps> = ({
@@ -21,13 +21,10 @@ export const Modal: FunctionComponent<IModalProps> = ({
     <div>
       {showModal && (
         <div className={styles.module} onClick={onClose}>
-          <div className={styles.moduleContent}>
+          <div className={styles.moduleContent} onClick={(event) => event.stopPropagation()}>
             <h3 className={classNames(styles.moduleHeader, 'is-lighter')}>{header}</h3>
-            <p className="is-gray-text">{message}</p>
-            <div className={classNames(styles.loadingBar, styles.loadingBarLoading)}></div>
-            <div className={styles.moduleButtons}>
-              {children}
-            </div>
+            <p className={styles.moduleMessage}>{message}</p>
+            <div>{children}</div>
           </div>
         </div>
       )}

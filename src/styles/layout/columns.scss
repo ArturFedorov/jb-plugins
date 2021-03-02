@@ -7,6 +7,12 @@
     width: 50%;
   }
 
+  &.is-tablet-full-width {
+    @media ($tablet) {
+      width: 100%;
+    }
+  }
+
   &.is-direction-column {
     flex-direction: column;
   }

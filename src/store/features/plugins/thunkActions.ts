@@ -1,7 +1,9 @@
 import { AppThunk } from '../../store';
 import { PluginService } from '../../../api/PluginService';
+import { DefaultsUtil } from '../../../shared/utils/defaults.util';
 import { INewPlugin } from '../../../shared/interfaces/models/IPlugin';
 import {
+  setPlugin,
   setPluginsSuccess,
   setPluginsTotalCount,
   setPluginUploadMessage,
@@ -18,7 +20,11 @@ export const fetchPlugins = (): AppThunk => async (dispatch) => {
 export const addPlugin = (plugin: INewPlugin): AppThunk => (dispatch) => {
   dispatch(setShowPluginModal(true));
   dispatch(setPluginUploadMessage('Plugin upload started. Waiting for response from server'));
-  return PluginService.addPlugin(plugin).then(({ data }) => {
-    console.log(data);
-  });
+
+  return PluginService.addPlugin(plugin)
+    .then(({ data }) => {
+      dispatch(setPlugin(DefaultsUtil.defaultPlugin));
+      dispatch(setPluginUploadMessage('Plugin was loaded succesfully'));
+    })
+    .catch((error) => dispatch(setPluginUploadMessage(error.message)));
 };

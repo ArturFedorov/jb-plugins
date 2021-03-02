@@ -50,7 +50,7 @@ const PluginForm: FunctionComponent<{
         <Controller
           name="name"
           control={control}
-          defaultValue={plugin.name}
+          defaultValue={''}
           rules={{ required: true, maxLength: 32 }}
           render={({ onChange, value }) => (
             <Input
@@ -75,7 +75,7 @@ const PluginForm: FunctionComponent<{
         <Controller
           name="author"
           control={control}
-          defaultValue={plugin.author}
+          defaultValue={''}
           rules={{ required: true }}
           render={({ onChange, value }) => (
             <Input
@@ -95,7 +95,7 @@ const PluginForm: FunctionComponent<{
         <Controller
           name="icon"
           control={control}
-          defaultValue={plugin.icon}
+          defaultValue={''}
           rules={{ required: true, pattern: validURIRegExp }}
           render={({ onChange, value }) => (
             <Input
@@ -122,7 +122,7 @@ const PluginForm: FunctionComponent<{
         <Controller
           name="description"
           control={control}
-          defaultValue={plugin.description}
+          defaultValue={''}
           render={({ onChange, value }) => (
             <div className={input.inputWrapper}>
               <textarea

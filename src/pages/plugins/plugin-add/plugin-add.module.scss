@@ -9,6 +9,10 @@
 
   &-form {
     padding: $building-unit-x3 0 $building-unit-x3 $building-unit-x6;
+
+    @media ($mobile) {
+      padding: $building-unit-x3 $building-unit-x2;
+    }
   }
 
   &-content {
@@ -16,11 +20,38 @@
     background-color: $white;
     border: 1px solid $light-gray;
     margin-top: 50px;
+
+    @media ($tablet) {
+      flex-direction: column;
+      padding-bottom: 150px;
+    }
   }
 
   &-header {
     color: $dark;
     margin: $building-unit-x2 0 $building-unit-x4 0;
+  }
+
+  &-modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $building-unit-x4;
+  }
+
+  &-preview {
+    border-left: 1px solid $light-gray;
+
+    @media ($tablet) {
+      border-left: none;
+      border-top: 1px solid $light-gray;
+      margin: 0;
+      padding: $building-unit-x4;
+    }
+
+    @media ($mobile) {
+      padding: 0;
+      margin: 0 !important;
+    }
   }
 
   &-top {

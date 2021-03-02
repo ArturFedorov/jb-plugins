@@ -1,19 +1,26 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { CircledCross } from '../../common/icons/CircledCross';
 import { Cross } from '../../common/icons/Cross';
 import styles from './error-message.module.scss';
 import { RootState } from '../../../store/rootReducer';
 import { getError } from '../../../store/features/base/selectors';
 import { IError } from '../../../shared/interfaces/api/IError';
+import { setError } from '../../../store/features/base';
 
 export interface IErrorMessageProps {
   error?: IError;
   className?: string;
+  setErrorConnect: ActionCreatorWithPayload<IError | undefined, string>;
 }
 
-const ErrorMessage: FunctionComponent<IErrorMessageProps> = ({ error, className }) => {
+const ErrorMessage: FunctionComponent<IErrorMessageProps> = ({
+  error,
+  className,
+  setErrorConnect
+}) => {
   return (
     <div>
       {error && (
@@ -30,7 +37,7 @@ const ErrorMessage: FunctionComponent<IErrorMessageProps> = ({ error, className 
             </span>
           </div>
           <div className={styles.errorMessageClose}>
-            <span className={styles.errorMessageLink}>
+            <span className={styles.errorMessageLink} onClick={() => setErrorConnect(undefined)}>
               <Cross fill="#ffffff" />
             </span>
           </div>
@@ -44,4 +51,8 @@ const mapStateToProps = (state: RootState) => ({
   error: getError(state.base)
 });
 
-export default connect(mapStateToProps, undefined)(ErrorMessage);
+const mapDispatchToProps = {
+  setErrorConnect: setError
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorMessage);
