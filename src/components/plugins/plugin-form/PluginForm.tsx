@@ -39,7 +39,7 @@ const PluginForm: FunctionComponent<{
     };
   }, [setPluginConnect, name, author, icon, plugin, description]);
 
-  const submitPluginForm = (data: INewPlugin) => {
+  const submitPluginForm = () => {
     addPluginConnect(plugin);
   };
 

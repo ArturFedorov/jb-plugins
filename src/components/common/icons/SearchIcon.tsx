@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Icon, IconProps } from '../common/icon/Icon';
+import { Icon, IconProps } from '../icon/Icon';
 
 export const SearchIcon: FunctionComponent<IconProps> = (props) => (
   <Icon {...props}>

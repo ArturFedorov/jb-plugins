@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { StarIcon } from '../../icons/StarIcon';
+import { StarIcon } from '../icons/StarIcon';
 import styles from './start-rating.module.scss';
 
 export interface IStarRatingProps {

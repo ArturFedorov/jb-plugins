@@ -8,7 +8,7 @@
   font-family: "Gotham Pro",  Helvetica;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h5 {
   font-weight: 900;
 
   &.is-lighter {
@@ -39,6 +39,11 @@ h3,
   font-size: $font-size-h3;
 }
 
+h5,
+.h5 {
+  font-size: $font-size-caption;
+}
+
 label {
   font-weight: $font-medium;
 }
@@ -59,6 +64,10 @@ p {
 
 .is-white-text {
   color: $white;
+}
+
+.is-gray-text {
+  color: $light-gray;
 }
 
 

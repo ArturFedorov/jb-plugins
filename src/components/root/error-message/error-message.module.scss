@@ -1,0 +1,30 @@
+@import '../../../styles/base/variables';
+
+.error-message {
+  display: flex;
+  background-color: $dark-gray;
+  border-radius: $building-unit-x0_5;
+  padding: $building-unit-x2;
+  transition: $default-transition;
+  width: 364px;
+
+  &-content {
+    margin-left: $building-unit-x0_5;
+  }
+
+  &-close {
+    margin-left: auto;
+  }
+
+  &-header {
+    margin: 0 0 $building-unit-x0_5 0;
+  }
+
+  &-link {
+    cursor: pointer;
+  }
+
+  &-text {
+    line-height: 150%;
+  }
+}

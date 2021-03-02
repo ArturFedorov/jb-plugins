@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { IconProps } from '../common/icon/Icon';
+import { IconProps } from '../icon/Icon';
 
 export const LoaderIcon: FunctionComponent<IconProps> = (props) => (
   <svg

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
 import { StarRating } from './StarRating';
-import { StarIcon } from '../../icons/StarIcon';
+import { StarIcon } from '../icons/StarIcon';
 
 describe('Star rating', () => {
   const baseProps = {

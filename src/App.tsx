@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Header } from './components/root/header/Header';
+import ErrorMessage from './components/root/error-message/ErrorMessage';
 import HomePage from './pages/Home';
 import { Routes } from './routes';
 import AboutPage from './pages/about/About';
@@ -22,6 +23,7 @@ const App: FunctionComponent = () => {
             <Route path={Routes.PLUGIN_DETAILS_PAGE} component={PluginDetailsPage} exact />
             <Route path={Routes.HOME} component={HomePage} exact />
           </Switch>
+          <ErrorMessage className="is-bottom-right" />
         </main>
       </div>
     </Router>
