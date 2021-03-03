@@ -68,8 +68,8 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
       </div>
       <div className="container">
         <div className="home-page-content">
-          <PluginList plugins={plugins} />
-          <PluginList header="Latest addition" plugins={latestPlugins} />
+          <PluginList isLoading={loadingFromApi} plugins={plugins} />
+          <PluginList isLoading={loadingFromApi} header="Latest addition" plugins={latestPlugins} />
         </div>
       </div>
     </div>

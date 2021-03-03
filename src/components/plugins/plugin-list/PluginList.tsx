@@ -2,17 +2,21 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { PluginCard } from '../plugin-card/PluginCard';
+import { PluginPlaceholder } from '../plugin-placeholder/PluginPlaceholder';
 import styles from '../plugins.module.scss';
+import { createArrayFromNumber } from '../../../shared/utils/format.util';
 
 export interface IPluginListProps {
   header?: string;
   plugins: IPlugin[];
   isCentered?: boolean;
+  isLoading?: boolean;
 }
 
 export const PluginList: FunctionComponent<IPluginListProps> = ({
   plugins,
   isCentered = false,
+  isLoading = false,
   header = 'Most Popular'
 }) => {
   return (
@@ -23,9 +27,8 @@ export const PluginList: FunctionComponent<IPluginListProps> = ({
           [styles.pluginListContentCentered]: isCentered
         })}
       >
-        {plugins.map((plugin) => (
-          <PluginCard key={plugin.id} plugin={plugin} />
-        ))}
+        {isLoading && createArrayFromNumber(6).map((item) => <PluginPlaceholder key={item} />)}
+        {!isLoading && plugins.map((plugin) => <PluginCard key={plugin.id} plugin={plugin} />)}
       </div>
     </div>
   );

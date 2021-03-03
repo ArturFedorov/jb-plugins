@@ -102,4 +102,12 @@ $description-height: 148px;
       }
     }
   }
+
+  &-placeholder {
+    width: $card-width;
+
+    @media ($mobile) {
+      width: 100%;
+    }
+  }
 }

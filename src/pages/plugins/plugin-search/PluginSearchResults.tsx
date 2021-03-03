@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styles from './plugin-search.module.scss';
 import { Input } from '../../../components/common/input/Input';
 import { SearchIcon } from '../../../components/common/icons/SearchIcon';
-import { fetchPlugins } from '../../../store/features/plugins/thunkActions';
+import { fetchSearchedPlugins } from '../../../store/features/plugins/thunkActions';
 import { setSearchValue } from '../../../store/features/plugins';
 import { RootState } from '../../../store/rootReducer';
 import { getPlugins, getTotalPluginCount } from '../../../store/features/plugins/selectors';
@@ -16,7 +16,7 @@ import { PluginList } from '../../../components/plugins/plugin-list/PluginList';
 export interface ISearchResultsProps {
   plugins: IPlugin[];
   pluginsTotalCount: number;
-  fetchPluginsConnect: () => void;
+  fetchSearchedPluginsConnect: (search: string) => void;
   loadingFromApi: boolean;
   setSearchValueConnect: (value: string) => void;
 }
@@ -25,28 +25,33 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
   plugins,
   pluginsTotalCount,
   loadingFromApi,
-  fetchPluginsConnect,
+  fetchSearchedPluginsConnect,
   setSearchValueConnect
 }) => {
-  const params = useLocation().search;
+  const searchValue = new URLSearchParams(useLocation().search).get('search') || '';
   const onChange = (value: string) => {
     console.log(value);
   };
 
   useEffect(() => {
-    fetchPluginsConnect();
-  }, [fetchPluginsConnect]);
+    fetchSearchedPluginsConnect(searchValue);
+  }, [fetchSearchedPluginsConnect]);
 
   return (
     <div className={styles.pluginSearch}>
       <div className="container">
         <div className={styles.pluginSearchInput}>
           <h1>Search</h1>
-          <Input placeholder="Search" onChange={onChange} icon={<SearchIcon />} />
+          <Input
+            value={searchValue}
+            placeholder="Search"
+            onChange={onChange}
+            icon={<SearchIcon />}
+          />
         </div>
         <div className={styles.pluginSearchList}>
           <h2 className={classNames(styles.pluginSearchHeader, 'is-lighter')}>Plugins</h2>
-          <PluginList header="" plugins={plugins} isCentered={true} />
+          <PluginList isLoading={loadingFromApi} header="" plugins={plugins} isCentered={true} />
         </div>
       </div>
     </div>
@@ -54,7 +59,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
 };
 
 const mapDispatchToProps = {
-  fetchPluginsConnect: fetchPlugins,
+  fetchSearchedPluginsConnect: fetchSearchedPlugins,
   setSearchValueConnect: setSearchValue
 };
 

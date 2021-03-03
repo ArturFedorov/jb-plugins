@@ -3,7 +3,7 @@ import styles from '../plugins.module.scss';
 
 export const PluginPlaceholder: FunctionComponent = () => {
   return (
-    <div className={styles.pluginCardLink}>
+    <div className={styles.pluginPlaceholder}>
       <div className="ph-item">
         <div className="ph-col-12">
           <div className="ph-picture"></div>

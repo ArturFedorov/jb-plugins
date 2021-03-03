@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   padding: $ph-gutter ($ph-gutter / 2) ($ph-gutter - $ph-spacer) ($ph-gutter / 2);
   overflow: hidden;
-  margin-bottom: $ph-gutter;
+  margin: $ph-gutter;
   background-color: $ph-bg;
   border: 1px solid darken($ph-bg, 10%);
   border-radius: $ph-border-radius;

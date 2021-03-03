@@ -17,6 +17,13 @@ export const fetchPlugins = (): AppThunk => async (dispatch) => {
   });
 };
 
+export const fetchSearchedPlugins = (search: string): AppThunk => async (dispatch) => {
+  PluginService.getSearchedPlugins(search).then(({ data }) => {
+    dispatch(setPluginsSuccess({ plugins: data.payload }));
+    dispatch(setPluginsTotalCount(data.total));
+  });
+};
+
 export const addPlugin = (plugin: INewPlugin): AppThunk => (dispatch) => {
   dispatch(setShowPluginModal(true));
   dispatch(setPluginUploadMessage('Plugin upload started. Waiting for response from server'));
