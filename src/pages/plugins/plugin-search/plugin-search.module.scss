@@ -1,0 +1,23 @@
+@import '../../../styles/base/variables';
+
+.plugin-search {
+  display: flex;
+  background-color: $white-gray;
+  min-height: 100vh;
+
+  &-header {
+    margin: 0;
+  }
+
+  &-input {
+    text-align: center;
+    padding: $building-unit-x5 6rem;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $building-unit-x5 0;
+  }
+}

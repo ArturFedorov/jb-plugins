@@ -7,7 +7,7 @@ import { Routes } from './routes';
 import AboutPage from './pages/about/About';
 import PluginAddPage from './pages/plugins/plugin-add/PluginAdd';
 import PluginDetailsPage from './pages/plugins/PluginDetails';
-import PluginSearchResultsPage from './pages/plugins/PluginSearchResults';
+import PluginSearchResultsPage from './pages/plugins/plugin-search/PluginSearchResults';
 import './styles/index.scss';
 
 const App: FunctionComponent = () => {
