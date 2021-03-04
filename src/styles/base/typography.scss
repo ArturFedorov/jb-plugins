@@ -67,6 +67,10 @@ p {
   }
 }
 
+.is-uppercase {
+  text-transform: uppercase;
+}
+
 .is-white-text {
   color: $white;
 }
@@ -75,6 +79,14 @@ p {
   color: $light-gray;
 }
 
+.is-secondary-text {
+  color: $medium-gray;
+}
+
+.is-link {
+  text-decoration: underline;
+  color: $blue;
+}
 
 .is-error-text {
   color: $crimson;

@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDebounce } from 'use-debounce';
+import { useHistory } from 'react-router-dom';
 import { Panel } from '../components/common/panel/Panel';
 import { Input } from '../components/common/input/Input';
 import { SearchIcon } from '../components/common/icons/SearchIcon';
@@ -17,6 +18,7 @@ import { setSearchValue } from '../store/features/plugins';
 import { RootState } from '../store/rootReducer';
 import { IPlugin } from '../shared/interfaces/models/IPlugin';
 import './home.scss';
+import { Routes } from '../routes';
 
 export interface IHomePageProps {
   plugins: IPlugin[];
@@ -38,6 +40,7 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
   const [search, setSearch] = useState<string>('');
   const [debouncedSearch] = useDebounce(search, 1000);
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     fetchPluginsConnect();
@@ -61,6 +64,9 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
               onChange={(event) => {
                 setIsLoading(true);
                 setSearch(event);
+              }}
+              onKeyEnter={() => {
+                history.push(`${Routes.PLUGIN_SEARCH_RESULTS}?query=${search}`);
               }}
             />
           </Panel>

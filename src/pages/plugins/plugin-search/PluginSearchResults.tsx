@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -28,13 +28,16 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
   fetchSearchedPluginsConnect,
   setSearchValueConnect
 }) => {
-  const searchValue = new URLSearchParams(useLocation().search).get('search') || '';
-  const onChange = (value: string) => {
-    console.log(value);
+  const searchValue = new URLSearchParams(useLocation().search).get('query') || '';
+  const [search, setSearch] = useState(searchValue);
+
+  const onChange = (val: string) => {
+    console.log(val);
+    setSearch(val);
   };
 
   useEffect(() => {
-    fetchSearchedPluginsConnect(searchValue);
+    fetchSearchedPluginsConnect(search);
   }, [fetchSearchedPluginsConnect]);
 
   return (
@@ -43,10 +46,11 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
         <div className={styles.pluginSearchInput}>
           <h1>Search</h1>
           <Input
-            value={searchValue}
+            value={search}
             placeholder="Search"
-            onChange={onChange}
             icon={<SearchIcon />}
+            onChange={onChange}
+            onKeyEnter={() => fetchSearchedPluginsConnect(search)}
           />
         </div>
         <div className={styles.pluginSearchList}>
