@@ -5,6 +5,23 @@
   background-color: $white-gray;
   min-height: 100vh;
 
+  &-button {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    color: $blue;
+    padding-bottom: 2px;
+    transition: $default-transition;
+
+    &:hover {
+      border-bottom: 1px solid $blue;
+    }
+  }
+
+  &-text {
+    margin: 2px $building-unit-x0_5 0 0;
+  }
+
   &-header {
     margin: 0;
   }

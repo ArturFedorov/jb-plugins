@@ -7,7 +7,7 @@ import { Input } from '../components/common/input/Input';
 import { SearchIcon } from '../components/common/icons/SearchIcon';
 import { LoaderIcon } from '../components/common/icons/LoaderIcon';
 import { PluginList } from '../components/plugins/plugin-list/PluginList';
-import { fetchPlugins } from '../store/features/plugins/thunkActions';
+import { fetchLatestPlugins, fetchPopularPlugins } from '../store/features/plugins/thunkActions';
 import { getLoadingStatus } from '../store/features/base/selectors';
 import {
   getLatestPlugins,
@@ -21,20 +21,22 @@ import './home.scss';
 import { Routes } from '../routes';
 
 export interface IHomePageProps {
-  plugins: IPlugin[];
+  popularPlugins: IPlugin[];
   pluginsTotalCount: number;
   latestPlugins: IPlugin[];
   loadingFromApi: boolean;
-  fetchPluginsConnect: () => void;
+  fetchPopularPluginsConnect: () => void;
+  fetchLatestPluginsConnect: () => void;
   setSearchValueConnect: (value: string) => void;
 }
 
 const HomePage: FunctionComponent<IHomePageProps> = ({
-  plugins,
+  popularPlugins,
   pluginsTotalCount,
   latestPlugins,
   loadingFromApi,
-  fetchPluginsConnect,
+  fetchPopularPluginsConnect,
+  fetchLatestPluginsConnect,
   setSearchValueConnect
 }) => {
   const [search, setSearch] = useState<string>('');
@@ -43,8 +45,9 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
   const history = useHistory();
 
   useEffect(() => {
-    fetchPluginsConnect();
-  }, [fetchPluginsConnect]);
+    fetchPopularPluginsConnect();
+    fetchLatestPluginsConnect();
+  }, [fetchLatestPluginsConnect, fetchPopularPluginsConnect]);
 
   useEffect(() => {
     setSearchValueConnect(debouncedSearch);
@@ -74,7 +77,7 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
       </div>
       <div className="container">
         <div className="home-page-content">
-          <PluginList isLoading={loadingFromApi} plugins={plugins} />
+          <PluginList isLoading={loadingFromApi} plugins={popularPlugins} />
           <PluginList isLoading={loadingFromApi} header="Latest addition" plugins={latestPlugins} />
         </div>
       </div>
@@ -83,13 +86,14 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
 };
 
 const mapDispatchToProps = {
-  fetchPluginsConnect: fetchPlugins,
+  fetchPopularPluginsConnect: fetchPopularPlugins,
+  fetchLatestPluginsConnect: fetchLatestPlugins,
   setSearchValueConnect: setSearchValue
 };
 
 const mapStateToProps = (state: RootState) => ({
-  plugins: getMostPopularPlugins(state.plugins),
   pluginsTotalCount: getTotalPluginCount(state.plugins),
+  popularPlugins: getMostPopularPlugins(state.plugins),
   latestPlugins: getLatestPlugins(state.plugins),
   loadingFromApi: getLoadingStatus(state.base)
 });

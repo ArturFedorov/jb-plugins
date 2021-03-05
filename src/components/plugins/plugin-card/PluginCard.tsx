@@ -6,7 +6,7 @@ import styles from '../plugins.module.scss';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import pluginIcon from '../../../assets/icons/jetbrains-logo.svg';
 import dateFormat from '../../../shared/utils/date.util';
-import { formatNumber } from '../../../shared/utils/format.util';
+import { formatNumber, getIconUrl } from '../../../shared/utils/format.util';
 
 export interface IPluginCardProps {
   plugin: IPlugin;
@@ -14,7 +14,7 @@ export interface IPluginCardProps {
 
 export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
   const [cardHovered, setCardHovered] = useState<boolean>(false);
-  const [imgSrc, setImgSrc] = useState(plugin.icon);
+  const [imgSrc, setImgSrc] = useState(pluginIcon);
 
   useEffect(() => {
     setImgSrc(plugin.icon);
@@ -22,12 +22,12 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
 
   // fallback mechanism for images
   const onImageLoadError = () => {
-    setImgSrc(pluginIcon);
+    setImgSrc(getIconUrl());
   };
 
   return (
     <NavLink
-      to="/"
+      to={`/plugins/${plugin.id}`}
       className={styles.pluginCardLink}
       onMouseEnter={() => setCardHovered(true)}
       onMouseLeave={() => setCardHovered(false)}

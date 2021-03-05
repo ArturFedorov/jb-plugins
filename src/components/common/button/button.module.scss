@@ -40,3 +40,18 @@
     }
   }
 }
+
+$pale-white: rgba(255, 255, 255, 0.8);
+
+.addButton {
+  display: flex;
+  align-items: center;
+  border-color: $pale-white;
+  color: $pale-white;
+  min-width: auto;
+  padding: $building-unit $building-unit-x2;
+
+  &-text {
+    margin-left: $building-unit;
+  }
+}

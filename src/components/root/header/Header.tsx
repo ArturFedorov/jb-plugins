@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { Button } from '../../common/button/Button';
+import { AddButton } from '../../common/button/AddButton';
 import logo from '../../../assets/icons/logo.svg';
 import styles from './header.module.scss';
-import { ButtonType } from '../../common/button/ButtonType';
 import { Routes } from '../../../routes';
 
 export const Header: FunctionComponent = () => {
@@ -23,7 +22,7 @@ export const Header: FunctionComponent = () => {
         </div>
         <div className={styles.headerSection}>
           <NavLink to={Routes.PLUGIN_ADD}>
-            <Button type={ButtonType.ACTION}>Add plugin</Button>
+            <AddButton text="Add plugin" />
           </NavLink>
         </div>
       </div>

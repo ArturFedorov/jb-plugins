@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { CircledCross } from '../../common/icons/CircledCross';
-import { Cross } from '../../common/icons/Cross';
+import { CrossIcon } from '../../common/icons/CrossIcon';
 import styles from './error-message.module.scss';
 import { RootState } from '../../../store/rootReducer';
 import { getError } from '../../../store/features/base/selectors';
@@ -38,7 +38,7 @@ const ErrorMessage: FunctionComponent<IErrorMessageProps> = ({
           </div>
           <div className={styles.errorMessageClose}>
             <span className={styles.errorMessageLink} onClick={() => setErrorConnect(undefined)}>
-              <Cross fill="#ffffff" />
+              <CrossIcon fill="#ffffff" />
             </span>
           </div>
         </div>
