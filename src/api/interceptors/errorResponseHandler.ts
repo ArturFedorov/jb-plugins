@@ -12,8 +12,8 @@ export default function errorResponseHandler(error: AxiosError) {
   const errorMessage: IError = { type: 'error' };
 
   if (error.response) {
-    errorMessage.text = error.response.data;
-    errorMessage.status = error.response.status;
+    errorMessage.text = error.response.data.message;
+    errorMessage.status = error.response.data.statusCode;
     errorMessage.title = error.response.statusText;
   } else if (error.request) {
     errorMessage.text = error.request.response;

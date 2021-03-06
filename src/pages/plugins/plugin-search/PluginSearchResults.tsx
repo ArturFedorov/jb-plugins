@@ -66,17 +66,21 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
           />
         </div>
         <div className={styles.pluginSearchList}>
-          <h2 className={classNames(styles.pluginSearchHeader, 'is-lighter')}>Plugins</h2>
+          <h2 className={classNames(styles.pluginSearchHeader, 'is-lighter')}>
+            Plugins {loadingFromApi}
+          </h2>
           <PluginList isLoading={loadingFromApi} header="" plugins={plugins} isCentered={true} />
-          <div className={styles.pluginSearchMore}>
-            <span
-              className={styles.pluginSearchButton}
-              onClick={() => setLimit(limit + DEFAULT_PAGE_SIZE)}
-            >
-              <span className={styles.pluginSearchText}>Show More</span>
-              <ArrowIcon viewBox="0 0 18 18" height={18} width={18} fill="#167dff" />
-            </span>
-          </div>
+          {Boolean(plugins.length) && (
+            <div className={styles.pluginSearchMore}>
+              <span
+                className={styles.pluginSearchButton}
+                onClick={() => setLimit(limit + DEFAULT_PAGE_SIZE)}
+              >
+                <span className={styles.pluginSearchText}>Show More</span>
+                <ArrowIcon viewBox="0 0 18 18" height={18} width={18} fill="#167dff" />
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,11 @@ import { RootState } from '../../../store/rootReducer';
 import { getPlugin } from '../../../store/features/plugins/selectors';
 import { fetchPlugin } from '../../../store/features/plugins/thunkActions';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
+import styles from './plugin-detail.module.scss';
+import { PluginIcon } from '../../../components/plugins/plugin-icon/PluginIcon';
+import { StarRating } from '../../../components/common/star-rating/StarRating';
+import { Button } from '../../../components/common/button/Button';
+import { DropMenu } from '../../../components/common/drop-menu/DropMenu';
 
 export interface IPluginDetailsProps {
   plugin: IPlugin;
@@ -21,9 +26,21 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   }, [fetchPluginConnect, id]);
 
   return (
-    <div>
-      <div>Details {id}</div>
-      <h1>{plugin.name}</h1>
+    <div className={styles.pluginDetail}>
+      <div className="container">
+        <div className={styles.pluginDetailHeader}>
+          <PluginIcon iconUrl={plugin.icon} className={styles.pluginDetailIcon} />
+          <div>
+            <h1 className="is-lighter">{plugin.name}</h1>
+            <StarRating rating={plugin.rating} />
+            <span className="is-secondary-text is-caption">{plugin.author}</span>
+          </div>
+          <div>
+            <Button action>Download</Button>
+            <DropMenu />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -93,6 +93,12 @@ $description-height: 148px;
       }
     }
 
+    &-empty {
+      margin-top: $building-unit-x3;
+      line-height: 170%;
+      text-align: center;
+    }
+
     &-header {
       font-weight: $font-bold;
       margin: 0 $building-unit-x2;

@@ -29,6 +29,13 @@ export const PluginList: FunctionComponent<IPluginListProps> = ({
       >
         {isLoading && createArrayFromNumber(6).map((item) => <PluginPlaceholder key={item} />)}
         {!isLoading && plugins.map((plugin) => <PluginCard key={plugin.id} plugin={plugin} />)}
+
+        {!isLoading && plugins.length === 0 && (
+          <div className={classNames(styles.pluginListEmpty, 'is-secondary-text')}>
+            <span>Seems that we don’t have any proper plugins for you here</span>
+            <span> ¯\_(ツ)_/¯</span>
+          </div>
+        )}
       </div>
     </div>
   );

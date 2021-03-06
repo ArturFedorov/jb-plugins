@@ -10,7 +10,6 @@
   outline: none;
   transition: $default-transition;
   margin: 0 $building-unit-x0_5;
-  min-width: 150px;
 
   @media ($mobile) {
     min-width: 80px;
@@ -38,6 +37,13 @@
       cursor: default;
       opacity: 0.5;
     }
+  }
+
+  &-round {
+    height: $building-unit-x5;
+    width: $building-unit-x5;
+    padding: 0;
+    border-radius: 50%;
   }
 }
 

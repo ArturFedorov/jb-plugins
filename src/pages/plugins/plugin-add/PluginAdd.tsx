@@ -17,7 +17,6 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { setShowPluginModal } from '../../../store/features/plugins';
 import { Button } from '../../../components/common/button/Button';
 import { LoadingBar } from '../../../components/common/loading-bar/LoadingBar';
-import { ButtonType } from '../../../components/common/button/ButtonType';
 import { LoadingState } from '../../../shared/enums/LoadingState';
 import { Routes } from '../../../routes';
 
@@ -66,10 +65,8 @@ const PluginAddPage: FunctionComponent<IPluginAddProps> = ({
           <LoadingBar loadingState={loadingState} />
           {!isLoading && (
             <div className={styles.pluginAddModalButtons}>
-              <Button type={ButtonType.DEFAULT} onClick={() => setShowPluginModalConnect(false)}>
-                Add new plugin
-              </Button>
-              <Button type={ButtonType.ACTION} onClick={goToPluginList}>
+              <Button onClick={() => setShowPluginModalConnect(false)}>Add new plugin</Button>
+              <Button action onClick={goToPluginList}>
                 Go to plugin list
               </Button>
             </div>

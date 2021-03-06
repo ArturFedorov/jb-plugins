@@ -20,6 +20,14 @@ export class PluginService {
   }
 
   static addPlugin(plugin: INewPlugin) {
-    return axios.post<IGetPayload<IPlugin>>('/api/plugins/add', plugin);
+    const { name, author, description, icon, fullDescription } = plugin;
+
+    return axios.post<INewPlugin>('/plugins/upload', {
+      name,
+      author,
+      description,
+      icon,
+      fullDescription
+    });
   }
 }

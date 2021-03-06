@@ -1,0 +1,12 @@
+@import '../../../styles/base/variables';
+
+.plugin-detail {
+  &-header {
+    display: flex;
+  }
+
+  &-icon {
+    height: $building-unit-x10;
+    width: $building-unit-x10;
+  }
+}
