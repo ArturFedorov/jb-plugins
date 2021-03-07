@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 import styles from './plugin-form.module.scss';
 import input from '../../../styles/components/input.module.scss';
 import textarea from '../../../styles/components/textarea.module.scss';
@@ -24,6 +25,7 @@ const PluginForm: FunctionComponent<{
   const author = watch('author');
   const icon = watch('icon') || '';
   const description = watch('description');
+  const history = useHistory();
 
   useEffect(() => {
     plugin.author = author;
@@ -138,7 +140,7 @@ const PluginForm: FunctionComponent<{
         <Button action onClick={handleSubmit(submitPluginForm)}>
           Add plugin
         </Button>
-        <Button>Cancel</Button>
+        <Button onClick={() => history.goBack()}>Cancel</Button>
       </div>
     </form>
   );

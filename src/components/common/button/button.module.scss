@@ -1,6 +1,7 @@
 @import '../../../styles/base/variables';
 
 .button {
+  display: inline-block;
   background-color: transparent;
   border: 1px solid $light-gray;
   border-radius: $building-unit-x3;

@@ -17,6 +17,12 @@
     margin-top: $building-unit;
   }
 
+  &-description {
+    padding: $building-unit-x5 $building-unit;
+    line-height: 120%;
+    max-width: 70%;
+  }
+
   &-header {
     display: flex;
     margin-top: $building-unit-x6;
@@ -35,6 +41,29 @@
   &-icon {
     height: $building-unit-x10;
     width: $building-unit-x10;
+  }
+
+  &-images {
+    display: flex;
+  }
+
+  &-image {
+    padding: $building-unit 0;
+    width: 50%;
+
+    &:first-child {
+      padding-right: $building-unit;
+    }
+
+    &:last-child {
+      padding-left: $building-unit;
+    }
+  }
+
+  &-rating {
+    padding: $building-unit-x3 $building-unit;
+    border-top: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
   }
 
   &-section {

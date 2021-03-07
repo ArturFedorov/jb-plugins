@@ -20,14 +20,14 @@ export class PluginService {
   }
 
   static addPlugin(plugin: INewPlugin) {
-    const { name, author, description, icon, fullDescription } = plugin;
+    const { name, author, description, icon } = plugin;
 
     return axios.post<INewPlugin>('/plugins/upload', {
       name,
       author,
       description,
       icon,
-      fullDescription
+      fullDescription: description
     });
   }
 

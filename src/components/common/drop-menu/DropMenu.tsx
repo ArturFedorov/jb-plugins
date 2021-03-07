@@ -6,7 +6,7 @@ import { DotsIcon } from '../icons/DotsIcon';
 import useOutsideClick from '../../../shared/hooks/useOutsideClick';
 
 export interface IDropMenuProps {
-  items: { value: string | number; key: string; onClick: (key: string) => void }[];
+  items: { value: string | number; key: string; onClick: () => void }[];
 }
 
 export const DropMenu: FunctionComponent<IDropMenuProps> = ({ items }) => {
@@ -31,11 +31,7 @@ export const DropMenu: FunctionComponent<IDropMenuProps> = ({ items }) => {
       >
         <div className={styles.dropMenuList}>
           {items.map((item) => (
-            <div
-              key={item.key}
-              className={styles.dropMenuItem}
-              onClick={() => item.onClick(item.key)}
-            >
+            <div key={item.key} className={styles.dropMenuItem} onClick={item.onClick}>
               {item.value}
             </div>
           ))}

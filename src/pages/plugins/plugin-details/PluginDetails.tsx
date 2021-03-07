@@ -8,12 +8,16 @@ import { deletePlugin, fetchPlugin } from '../../../store/features/plugins/thunk
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import styles from './plugin-detail.module.scss';
 import { PluginIcon } from '../../../components/plugins/plugin-icon/PluginIcon';
+import { PluginRating } from '../../../components/plugins/plugin-rating/PluginRating';
 import { StarRating } from '../../../components/common/star-rating/StarRating';
 import { Button } from '../../../components/common/button/Button';
+import { DownloadLink } from '../../../components/common/button/DownloadLink';
 import { DropMenu } from '../../../components/common/drop-menu/DropMenu';
 import { LoadingBar } from '../../../components/common/loading-bar/LoadingBar';
 import { Modal } from '../../../components/common/modal/Modal';
 import { LoadingState } from '../../../shared/enums/LoadingState';
+import images1 from '../../../assets/images/scrennshot1.png';
+import images2 from '../../../assets/images/scrennshot2.png';
 
 export interface IPluginDetailsProps {
   plugin: IPlugin;
@@ -37,16 +41,17 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
     deletePluginConnect(plugin.id);
   };
 
-  const onClick = (key: string) => {
-    console.log(key);
-    if (key === 'delete') {
-      setShowDeleteModal(true);
-    }
+  const onShareClick = () => {
+    console.log('123');
+  };
+
+  const onDeleteClick = () => {
+    setShowDeleteModal(true);
   };
 
   const dropMenuItems = [
-    { value: 'Share plugin', key: 'share', onClick },
-    { value: 'Delete plugin', key: 'delete', onClick }
+    { value: 'Share plugin', key: 'share', onClick: onShareClick },
+    { value: 'Delete plugin', key: 'delete', onClick: onDeleteClick }
   ];
 
   return (
@@ -84,7 +89,7 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
           </div>
           <div className={styles.pluginDetailActions}>
             <div>
-              <Button action>Download</Button>
+              <DownloadLink content={plugin} fileName={plugin.name} text="Download" />
             </div>
             <DropMenu items={dropMenuItems} />
           </div>
@@ -92,11 +97,22 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
       </div>
       <div className={styles.pluginDetailMain}>
         <div className="container">
-          <div>
-            <p>{plugin.description}</p>
+          <div className={styles.pluginDetailImages}>
+            <img className={styles.pluginDetailImage} src={images1} alt="img1" />
+            <img className={styles.pluginDetailImage} src={images2} alt="img2" />
           </div>
-          <div>
-            <p>{plugin.fullDescription}</p>
+          <div className={styles.pluginDetailDescription}>
+            <div>
+              <p>{plugin.description}</p>
+            </div>
+            <div>
+              <h4 className="is-lighter">Key features</h4>
+              <p>{plugin.fullDescription}</p>
+            </div>
+          </div>
+          <div className={styles.pluginDetailRating}>
+            <h3 className="is-lighter">Rating & Reviews</h3>
+            <PluginRating rating={plugin.rating} />
           </div>
         </div>
       </div>
