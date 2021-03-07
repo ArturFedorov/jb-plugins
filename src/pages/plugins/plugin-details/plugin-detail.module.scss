@@ -1,12 +1,45 @@
 @import '../../../styles/base/variables';
 
 .plugin-detail {
+  &-actions {
+    display: flex;
+    margin-left: auto;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $building-unit-x4;
+  }
+
+  &-caption {
+    display: block;
+    margin-top: $building-unit;
+  }
+
   &-header {
     display: flex;
+    margin-top: $building-unit-x6;
+    padding-bottom: $building-unit-x6;
+  }
+
+  &-heading {
+    margin: 0;
+  }
+
+  &-main {
+    border-top: 1px solid $light-gray;
+    padding-top: $building-unit-x6;
   }
 
   &-icon {
     height: $building-unit-x10;
     width: $building-unit-x10;
+  }
+
+  &-section {
+    &:first-child {
+      margin-right: $building-unit-x2;
+    }
   }
 }

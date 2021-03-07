@@ -30,4 +30,8 @@ export class PluginService {
       fullDescription
     });
   }
+
+  static deletePlugin(id: string) {
+    return axios.delete(`/plugins/delete/${id}`);
+  }
 }

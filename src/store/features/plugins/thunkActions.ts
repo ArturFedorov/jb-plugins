@@ -38,6 +38,10 @@ export const fetchPopularPlugins = (): AppThunk => (dispatch) => {
   });
 };
 
+export const deletePlugin = (id: string): AppThunk => (dispatch) => {
+  return PluginService.deletePlugin(id);
+};
+
 export const addPlugin = (plugin: INewPlugin): AppThunk => (dispatch) => {
   dispatch(setShowPluginModal(true));
   dispatch(setPluginUploadMessage('Plugin upload started. Waiting for response from server'));
@@ -45,7 +49,7 @@ export const addPlugin = (plugin: INewPlugin): AppThunk => (dispatch) => {
   return PluginService.addPlugin(plugin)
     .then(() => {
       dispatch(setPlugin(DefaultsUtil.defaultPlugin));
-      dispatch(setPluginUploadMessage('Plugin was loaded succesfully'));
+      dispatch(setPluginUploadMessage('Plugin was loaded successfully'));
     })
     .catch((error) => dispatch(setPluginUploadMessage(error.message)));
 };
