@@ -45,6 +45,10 @@
     width: $building-unit-x5;
     padding: 0;
     border-radius: 50%;
+
+    @media ($mobile) {
+      min-width: $building-unit-x5;
+    }
   }
 }
 
@@ -60,5 +64,9 @@ $pale-white: rgba(255, 255, 255, 0.8);
 
   &-text {
     margin-left: $building-unit;
+
+    @media ($mobile) {
+      display: none;
+    }
   }
 }

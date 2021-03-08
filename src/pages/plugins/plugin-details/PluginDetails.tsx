@@ -18,6 +18,8 @@ import { Modal } from '../../../components/common/modal/Modal';
 import { LoadingState } from '../../../shared/enums/LoadingState';
 import images1 from '../../../assets/images/scrennshot1.png';
 import images2 from '../../../assets/images/scrennshot2.png';
+import { Tooltip } from '../../../components/common/tooltip/Tooltip';
+import { formatNumber } from '../../../shared/utils/format.util';
 
 export interface IPluginDetailsProps {
   plugin: IPlugin;
@@ -43,10 +45,12 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
 
   const onShareClick = () => {
     console.log('123');
+    // TODO implement
   };
 
   const onDeleteClick = () => {
     setShowDeleteModal(true);
+    // TODO redirect to home
   };
 
   const dropMenuItems = [
@@ -112,7 +116,25 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
           </div>
           <div className={styles.pluginDetailRating}>
             <h3 className="is-lighter">Rating & Reviews</h3>
-            <PluginRating rating={plugin.rating} />
+            <div className={styles.pluginDetailRate}>
+              <PluginRating rating={plugin.rating} />
+              <Tooltip className={styles.pluginDetailTooltip}>
+                <span className="is-caption">Check out </span>
+                <a
+                  className="is-caption is-white-text is-underlined"
+                  href="https://plugins.jetbrains.com/docs/marketplace/plugins-rating.html"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  this document
+                </a>
+                <span className="is-caption"> for more information</span> <br />
+                <span className="is-caption">about Bayesian rating</span>
+              </Tooltip>
+            </div>
+            <span className="is-caption is-secondary-text">
+              downloads {formatNumber(plugin.downloads)}
+            </span>
           </div>
         </div>
       </div>
