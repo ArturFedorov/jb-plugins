@@ -98,6 +98,10 @@
 
   &-tooltip {
     margin: 0 0 3px 0;
+
+    @media ($tablet) {
+      display: none !important;
+    }
   }
 
   &-section {

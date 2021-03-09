@@ -6,6 +6,8 @@ export interface IPluginState {
   latestPlugins: IPlugin[];
   popularPlugins: IPlugin[];
   plugin: IPlugin;
+  pluginDeletedSuccess: boolean;
+  pluginDeletedFailed: boolean;
   showPluginModal: boolean;
   pluginUploadMessage: string;
   pluginsTotalCount: number;
@@ -16,6 +18,8 @@ const plugins = createSlice({
   name: 'plugins',
   initialState: {
     plugins: [],
+    pluginDeletedSuccess: false,
+    pluginDeletedFailed: false,
     latestPlugins: [],
     popularPlugins: [],
     plugin: { date: new Date().toString(), downloads: 0, icon: '' } as IPlugin,
@@ -48,6 +52,12 @@ const plugins = createSlice({
     },
     setPluginUploadMessage(state: IPluginState, action: PayloadAction<string>) {
       state.pluginUploadMessage = action.payload;
+    },
+    setPluginDeletedSuccess(state: IPluginState, action: PayloadAction<boolean>) {
+      state.pluginDeletedSuccess = action.payload;
+    },
+    setPluginDeletedFailed(state: IPluginState, action: PayloadAction<boolean>) {
+      state.pluginDeletedFailed = action.payload;
     }
   }
 });
@@ -57,6 +67,8 @@ export const {
   setPopularPlugins,
   setLatestPlugins,
   setPlugin,
+  setPluginDeletedSuccess,
+  setPluginDeletedFailed,
   setPluginUploadMessage,
   setSearchValue,
   setPluginsTotalCount,

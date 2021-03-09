@@ -1,9 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { RootState } from '../../../store/rootReducer';
-import { getPlugin } from '../../../store/features/plugins/selectors';
+import {
+  getPlugin,
+  getPluginDeletedFailed,
+  getPluginDeletedSuccess
+} from '../../../store/features/plugins/selectors';
 import { deletePlugin, fetchPlugin } from '../../../store/features/plugins/thunkActions';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import styles from './plugin-detail.module.scss';
@@ -20,20 +24,48 @@ import images1 from '../../../assets/images/scrennshot1.png';
 import images2 from '../../../assets/images/scrennshot2.png';
 import { Tooltip } from '../../../components/common/tooltip/Tooltip';
 import { formatNumber } from '../../../shared/utils/format.util';
+import { setPluginDeletedFailed, setPluginDeletedSuccess } from '../../../store/features/plugins';
 
 export interface IPluginDetailsProps {
   plugin: IPlugin;
+  pluginDeletedSuccess: boolean;
+  pluginDeletedFailed: boolean;
   fetchPluginConnect: (id: string) => void;
   deletePluginConnect: (id: string) => void;
+  setPluginDeletedSuccessConnect: (value: boolean) => void;
+  setPluginDeletedFailedConnect: (value: boolean) => void;
 }
 
 const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   plugin,
+  pluginDeletedSuccess,
+  pluginDeletedFailed,
   fetchPluginConnect,
-  deletePluginConnect
+  deletePluginConnect,
+  setPluginDeletedSuccessConnect,
+  setPluginDeletedFailedConnect
 }) => {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  useEffect(() => {
+    if (pluginDeletedSuccess && !pluginDeletedFailed) {
+      history.push('/');
+    }
+
+    return () => {
+      // reset values
+      setPluginDeletedSuccessConnect(false);
+      setPluginDeletedFailedConnect(false);
+    };
+  }, [
+    pluginDeletedFailed,
+    pluginDeletedSuccess,
+    setPluginDeletedSuccessConnect,
+    setPluginDeletedFailedConnect,
+    history
+  ]);
 
   useEffect(() => {
     fetchPluginConnect(id);
@@ -44,13 +76,11 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   };
 
   const onShareClick = () => {
-    console.log('123');
     // TODO implement
   };
 
   const onDeleteClick = () => {
     setShowDeleteModal(true);
-    // TODO redirect to home
   };
 
   const dropMenuItems = [
@@ -144,11 +174,15 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
 
 const mapDispatchToProps = {
   fetchPluginConnect: fetchPlugin,
-  deletePluginConnect: deletePlugin
+  deletePluginConnect: deletePlugin,
+  setPluginDeletedSuccessConnect: setPluginDeletedSuccess,
+  setPluginDeletedFailedConnect: setPluginDeletedFailed
 };
 
 const mapStateToProps = (state: RootState) => ({
-  plugin: getPlugin(state.plugins)
+  plugin: getPlugin(state.plugins),
+  pluginDeletedSuccess: getPluginDeletedSuccess(state.plugins),
+  pluginDeletedFailed: getPluginDeletedFailed(state.plugins)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PluginDetailsPage);

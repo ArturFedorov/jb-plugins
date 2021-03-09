@@ -1,11 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Button } from './Button';
-import { ButtonType } from './ButtonType';
 
 describe('Button', () => {
   const onClick = jest.fn();
-  const button = shallow(<Button onClick={onClick} type={ButtonType.ACTION} />);
+  const button = shallow(<Button onClick={onClick} action />);
 
   it('should trigger event when clicked', () => {
     button.simulate('click');

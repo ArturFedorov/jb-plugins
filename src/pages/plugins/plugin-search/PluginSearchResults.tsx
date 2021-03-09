@@ -39,7 +39,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
 
   useEffect(() => {
     fetchPluginsConnect({ query, limit });
-  }, [fetchPluginsConnect, limit]);
+  }, [fetchPluginsConnect, limit, query]);
 
   const onChange = (val: string) => {
     setQuery(val);

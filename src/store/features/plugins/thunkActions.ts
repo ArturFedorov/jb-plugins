@@ -6,6 +6,8 @@ import { IPluginQueryParams } from '../../../shared/interfaces/api/IPluginQueryP
 import {
   setLatestPlugins,
   setPlugin,
+  setPluginDeletedFailed,
+  setPluginDeletedSuccess,
   setPlugins,
   setPluginsTotalCount,
   setPluginUploadMessage,
@@ -39,7 +41,9 @@ export const fetchPopularPlugins = (): AppThunk => (dispatch) => {
 };
 
 export const deletePlugin = (id: string): AppThunk => (dispatch) => {
-  return PluginService.deletePlugin(id);
+  PluginService.deletePlugin(id)
+    .then(() => dispatch(setPluginDeletedSuccess(true)))
+    .catch(() => dispatch(setPluginDeletedFailed(true)));
 };
 
 export const addPlugin = (plugin: INewPlugin): AppThunk => (dispatch) => {

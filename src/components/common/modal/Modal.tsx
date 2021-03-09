@@ -22,7 +22,7 @@ export const Modal: FunctionComponent<IModalProps> = ({
       {showModal && (
         <div className={styles.module} onClick={onClose}>
           <div className={styles.moduleContent} onClick={(event) => event.stopPropagation()}>
-            <h3 className={classNames(styles.moduleHeader, 'is-lighter')}>{header}</h3>
+            <h3 className={classNames('is-lighter', styles.moduleHeader)}>{header}</h3>
             <p className={styles.moduleMessage}>{message}</p>
             <div>{children}</div>
           </div>

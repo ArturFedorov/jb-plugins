@@ -9,3 +9,5 @@ export const getShowPluginModal = (state: IPluginState): boolean => state.showPl
 export const gePluginUploadMessage = (state: IPluginState): string => state.pluginUploadMessage;
 export const getMostPopularPlugins = (state: IPluginState): IPlugin[] => state.popularPlugins;
 export const getLatestPlugins = (state: IPluginState): IPlugin[] => state.latestPlugins;
+export const getPluginDeletedSuccess = (state: IPluginState): boolean => state.pluginDeletedSuccess;
+export const getPluginDeletedFailed = (state: IPluginState): boolean => state.pluginDeletedFailed;
