@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/ArturFedorov/jb-plugins.svg?branch=master)](https://travis-ci.org/ArturFedorov/jb-plugins)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
