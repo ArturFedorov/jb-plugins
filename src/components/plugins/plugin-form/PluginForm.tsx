@@ -3,12 +3,12 @@ import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 import styles from './plugin-form.module.scss';
 import input from '../../../styles/components/input.module.scss';
 import textarea from '../../../styles/components/textarea.module.scss';
 import { Input } from '../../common/input/Input';
 import { Button } from '../../common/button/Button';
-import { ButtonType } from '../../common/button/ButtonType';
 import { setPlugin } from '../../../store/features/plugins';
 import { INewPlugin, IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { DefaultsUtil } from '../../../shared/utils/defaults.util';
@@ -25,6 +25,7 @@ const PluginForm: FunctionComponent<{
   const author = watch('author');
   const icon = watch('icon') || '';
   const description = watch('description');
+  const history = useHistory();
 
   useEffect(() => {
     plugin.author = author;
@@ -136,10 +137,10 @@ const PluginForm: FunctionComponent<{
         />
       </div>
       <div>
-        <Button type={ButtonType.ACTION} onClick={handleSubmit(submitPluginForm)}>
+        <Button action onClick={handleSubmit(submitPluginForm)}>
           Add plugin
         </Button>
-        <Button type={ButtonType.DEFAULT}>Cancel</Button>
+        <Button onClick={() => history.goBack()}>Cancel</Button>
       </div>
     </form>
   );

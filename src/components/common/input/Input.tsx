@@ -6,6 +6,7 @@ export interface InputProps {
   isInverted?: boolean;
   icon?: ReactElement;
   onChange: (value: string) => void;
+  onKeyEnter?: (value: string | undefined) => void;
   placeholder?: string;
   type?: string;
   name?: string;
@@ -18,6 +19,7 @@ export const Input: FunctionComponent<InputProps> = ({
   value,
   icon,
   onChange,
+  onKeyEnter,
   isInverted = false,
   name,
   type = 'text',
@@ -43,6 +45,11 @@ export const Input: FunctionComponent<InputProps> = ({
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
           onChange={(event) => onChange(event.target.value)}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter' && onKeyEnter) {
+              onKeyEnter((event.target as HTMLInputElement).value);
+            }
+          }}
         />
         {icon}
       </div>

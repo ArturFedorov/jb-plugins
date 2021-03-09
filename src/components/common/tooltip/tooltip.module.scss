@@ -1,0 +1,31 @@
+@import '../../../styles/base/variables';
+
+.tooltip {
+  display: inline-flex;
+  position: relative;
+  max-width: $building-unit-x3;
+
+  &-trigger {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: $building-unit-x0_5;
+  }
+
+  &-message {
+    color: $white;
+    background-color: $dark-gray;
+    padding: $building-unit-x0_5 $building-unit;
+    transition: $default-transition;
+    position: absolute;
+    right: -300px;
+    opacity: 0;
+    visibility: hidden;
+
+    &-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

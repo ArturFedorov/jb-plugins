@@ -1,29 +1,28 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { ButtonType } from './ButtonType';
 import style from './button.module.scss';
 
 export interface IButtonProps {
-  type: ButtonType;
+  action?: boolean;
+  round?: boolean;
   disabled?: boolean;
   onClick?: (event?: any) => void;
 }
 
 export const Button: FunctionComponent<IButtonProps> = ({
+  action = false,
   disabled = false,
-  type = ButtonType.ACTION,
+  round = false,
   onClick,
   children
 }) => {
-  const buttonType = {
-    [ButtonType.ACTION]: style.buttonAction,
-    [ButtonType.DEFAULT]: style.buttonDefault
-  };
-
   return (
     <button
       disabled={disabled}
-      className={classNames(style.button, buttonType[type])}
+      className={classNames(style.button, {
+        [style.buttonAction]: action,
+        [style.buttonRound]: round
+      })}
       onClick={onClick}
     >
       {children}

@@ -3,7 +3,11 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 
 export interface IPluginState {
   plugins: IPlugin[];
+  latestPlugins: IPlugin[];
+  popularPlugins: IPlugin[];
   plugin: IPlugin;
+  pluginDeletedSuccess: boolean;
+  pluginDeletedFailed: boolean;
   showPluginModal: boolean;
   pluginUploadMessage: string;
   pluginsTotalCount: number;
@@ -14,6 +18,10 @@ const plugins = createSlice({
   name: 'plugins',
   initialState: {
     plugins: [],
+    pluginDeletedSuccess: false,
+    pluginDeletedFailed: false,
+    latestPlugins: [],
+    popularPlugins: [],
     plugin: { date: new Date().toString(), downloads: 0, icon: '' } as IPlugin,
     searchValue: '',
     showPluginModal: false,
@@ -21,8 +29,14 @@ const plugins = createSlice({
     pluginsTotalCount: 0
   },
   reducers: {
-    setPluginsSuccess(state: IPluginState, action: PayloadAction<{ plugins: IPlugin[] }>) {
+    setPlugins(state: IPluginState, action: PayloadAction<{ plugins: IPlugin[] }>) {
       state.plugins = action.payload.plugins || [];
+    },
+    setLatestPlugins(state: IPluginState, action: PayloadAction<{ plugins: IPlugin[] }>) {
+      state.latestPlugins = action.payload.plugins || [];
+    },
+    setPopularPlugins(state: IPluginState, action: PayloadAction<{ plugins: IPlugin[] }>) {
+      state.popularPlugins = action.payload.plugins || [];
     },
     setPlugin(state: IPluginState, action: PayloadAction<IPlugin>) {
       state.plugin = { ...state.plugin, ...action.payload };
@@ -38,13 +52,23 @@ const plugins = createSlice({
     },
     setPluginUploadMessage(state: IPluginState, action: PayloadAction<string>) {
       state.pluginUploadMessage = action.payload;
+    },
+    setPluginDeletedSuccess(state: IPluginState, action: PayloadAction<boolean>) {
+      state.pluginDeletedSuccess = action.payload;
+    },
+    setPluginDeletedFailed(state: IPluginState, action: PayloadAction<boolean>) {
+      state.pluginDeletedFailed = action.payload;
     }
   }
 });
 
 export const {
-  setPluginsSuccess,
+  setPlugins,
+  setPopularPlugins,
+  setLatestPlugins,
   setPlugin,
+  setPluginDeletedSuccess,
+  setPluginDeletedFailed,
   setPluginUploadMessage,
   setSearchValue,
   setPluginsTotalCount,

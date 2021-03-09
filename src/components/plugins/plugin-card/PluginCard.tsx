@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { StarRating } from '../../common/star-rating/StarRating';
+import { PluginIcon } from '../plugin-icon/PluginIcon';
 import styles from '../plugins.module.scss';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
-import pluginIcon from '../../../assets/icons/jetbrains-logo.svg';
 import dateFormat from '../../../shared/utils/date.util';
 import { formatNumber } from '../../../shared/utils/format.util';
 
@@ -14,32 +14,17 @@ export interface IPluginCardProps {
 
 export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
   const [cardHovered, setCardHovered] = useState<boolean>(false);
-  const [imgSrc, setImgSrc] = useState(plugin.icon);
-
-  useEffect(() => {
-    setImgSrc(plugin.icon);
-  }, [plugin.icon]);
-
-  // fallback mechanism for images
-  const onImageLoadError = () => {
-    setImgSrc(pluginIcon);
-  };
 
   return (
     <NavLink
-      to="/"
+      to={`/plugins/${plugin.id}`}
       className={styles.pluginCardLink}
       onMouseEnter={() => setCardHovered(true)}
       onMouseLeave={() => setCardHovered(false)}
     >
       <div className={styles.pluginCard}>
         <div className={styles.pluginCardHeader}>
-          <img
-            className={styles.pluginCardIcon}
-            src={imgSrc}
-            onError={onImageLoadError}
-            alt="plugin"
-          />
+          <PluginIcon iconUrl={plugin.icon} className={styles.pluginCardIcon} />
           <div className={styles.pluginCardSection}>
             <h3 className="is-lighter marginless">{plugin.name}</h3>
             <StarRating rating={plugin.rating} />

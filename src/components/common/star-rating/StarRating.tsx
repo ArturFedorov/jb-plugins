@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { StarIcon } from '../icons/StarIcon';
 import styles from './start-rating.module.scss';
+import { createArrayFromNumber } from '../../../shared/utils/format.util';
 
 export interface IStarRatingProps {
   starCount?: number;
@@ -12,7 +13,6 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
   const MAX_RATING_COUNT = 10;
   const STAR_ICON_WIDTH = 24;
 
-  const createArrayFromNumber = (arrayLength: number) => Array.from(Array(arrayLength).keys());
   const calculateClipPathRatio = (index: number) => {
     if (!rating || rating === 0) return 0;
     const itemRating = index + 1;

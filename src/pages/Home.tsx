@@ -1,12 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDebounce } from 'use-debounce';
+import { useHistory } from 'react-router-dom';
 import { Panel } from '../components/common/panel/Panel';
 import { Input } from '../components/common/input/Input';
 import { SearchIcon } from '../components/common/icons/SearchIcon';
 import { LoaderIcon } from '../components/common/icons/LoaderIcon';
 import { PluginList } from '../components/plugins/plugin-list/PluginList';
-import { fetchPlugins } from '../store/features/plugins/thunkActions';
+import { fetchLatestPlugins, fetchPopularPlugins } from '../store/features/plugins/thunkActions';
 import { getLoadingStatus } from '../store/features/base/selectors';
 import {
   getLatestPlugins,
@@ -17,31 +18,36 @@ import { setSearchValue } from '../store/features/plugins';
 import { RootState } from '../store/rootReducer';
 import { IPlugin } from '../shared/interfaces/models/IPlugin';
 import './home.scss';
+import { Routes } from '../routes';
 
 export interface IHomePageProps {
-  plugins: IPlugin[];
+  popularPlugins: IPlugin[];
   pluginsTotalCount: number;
   latestPlugins: IPlugin[];
   loadingFromApi: boolean;
-  fetchPluginsConnect: () => void;
+  fetchPopularPluginsConnect: () => void;
+  fetchLatestPluginsConnect: () => void;
   setSearchValueConnect: (value: string) => void;
 }
 
 const HomePage: FunctionComponent<IHomePageProps> = ({
-  plugins,
+  popularPlugins,
   pluginsTotalCount,
   latestPlugins,
   loadingFromApi,
-  fetchPluginsConnect,
+  fetchPopularPluginsConnect,
+  fetchLatestPluginsConnect,
   setSearchValueConnect
 }) => {
   const [search, setSearch] = useState<string>('');
   const [debouncedSearch] = useDebounce(search, 1000);
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
-    fetchPluginsConnect();
-  }, [fetchPluginsConnect]);
+    fetchPopularPluginsConnect();
+    fetchLatestPluginsConnect();
+  }, [fetchLatestPluginsConnect, fetchPopularPluginsConnect]);
 
   useEffect(() => {
     setSearchValueConnect(debouncedSearch);
@@ -62,14 +68,17 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
                 setIsLoading(true);
                 setSearch(event);
               }}
+              onKeyEnter={() => {
+                history.push(`${Routes.PLUGIN_SEARCH_RESULTS}?query=${search}`);
+              }}
             />
           </Panel>
         </div>
       </div>
       <div className="container">
         <div className="home-page-content">
-          <PluginList plugins={plugins} />
-          <PluginList header="Latest addition" plugins={latestPlugins} />
+          <PluginList isLoading={loadingFromApi} plugins={popularPlugins} />
+          <PluginList isLoading={loadingFromApi} header="Latest addition" plugins={latestPlugins} />
         </div>
       </div>
     </div>
@@ -77,13 +86,14 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
 };
 
 const mapDispatchToProps = {
-  fetchPluginsConnect: fetchPlugins,
+  fetchPopularPluginsConnect: fetchPopularPlugins,
+  fetchLatestPluginsConnect: fetchLatestPlugins,
   setSearchValueConnect: setSearchValue
 };
 
 const mapStateToProps = (state: RootState) => ({
-  plugins: getMostPopularPlugins(state.plugins),
   pluginsTotalCount: getTotalPluginCount(state.plugins),
+  popularPlugins: getMostPopularPlugins(state.plugins),
   latestPlugins: getLatestPlugins(state.plugins),
   loadingFromApi: getLoadingStatus(state.base)
 });

@@ -1,0 +1,44 @@
+@import '../../../styles/base/variables';
+
+.drop-menu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &-trigger {
+    height: $building-unit-x5;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-item {
+    cursor: pointer;
+    color: $medium-gray;
+    padding: $building-unit-x2;
+    transition: $default-transition;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $light-gray;
+      color: $dark-gray;
+    }
+  }
+
+  &-content {
+    display: none;
+    top: $building-unit-x6;
+    right: 0;
+    min-width: 150px;
+    position: absolute;
+    background-color: $white;
+    border: 1px solid $light-gray;
+    z-index: $middle-z-index;
+
+    &-visible {
+      display: block;
+    }
+  }
+}

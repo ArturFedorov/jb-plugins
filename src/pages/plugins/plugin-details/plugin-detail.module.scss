@@ -1,0 +1,112 @@
+@import '../../../styles/base/variables';
+
+.plugin-detail {
+  &-actions {
+    display: flex;
+    margin-left: auto;
+
+    @media ($mobile) {
+      a:first-child {
+        display: none;
+      }
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $building-unit-x4;
+  }
+
+  &-caption {
+    display: block;
+    margin-top: $building-unit;
+  }
+
+  &-description {
+    padding: $building-unit-x5 $building-unit;
+    line-height: 120%;
+    max-width: 70%;
+
+    @media ($mobile) {
+      max-width: 100%;
+    }
+  }
+
+  &-header {
+    display: flex;
+    margin-top: $building-unit-x6;
+    padding-bottom: $building-unit-x6;
+  }
+
+  &-heading {
+    margin: 0;
+  }
+
+  &-main {
+    border-top: 1px solid $light-gray;
+    padding-top: $building-unit-x6;
+  }
+
+  &-icon {
+    height: $building-unit-x10;
+    width: $building-unit-x10;
+  }
+
+  &-images {
+    display: flex;
+
+    @media ($mobile) {
+      flex-direction: column;
+    }
+  }
+
+  &-image {
+    padding: $building-unit 0;
+    width: 50%;
+
+    @media ($mobile) {
+      width: 100%;
+    }
+
+    &:first-child {
+      padding-right: $building-unit;
+
+      @media ($mobile) {
+        padding-right: 0;
+      }
+    }
+
+    &:last-child {
+      padding-left: $building-unit;
+
+      @media ($mobile) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &-rating {
+    padding: $building-unit-x3 $building-unit;
+    border-top: 1px solid $light-gray;
+  }
+
+  &-rate {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &-tooltip {
+    margin: 0 0 3px 0;
+
+    @media ($tablet) {
+      display: none !important;
+    }
+  }
+
+  &-section {
+    &:first-child {
+      margin-right: $building-unit-x2;
+    }
+  }
+}

@@ -84,9 +84,19 @@ $description-height: 148px;
       display: flex;
       flex-wrap: wrap;
 
+      &-centered {
+        justify-content: center;
+      }
+
       @media ($tablet) {
         justify-content: center;
       }
+    }
+
+    &-empty {
+      margin-top: $building-unit-x3;
+      line-height: 170%;
+      text-align: center;
     }
 
     &-header {
@@ -96,6 +106,14 @@ $description-height: 148px;
       @media ($tablet) {
         text-align: center;
       }
+    }
+  }
+
+  &-placeholder {
+    width: $card-width;
+
+    @media ($mobile) {
+      width: 100%;
     }
   }
 }

@@ -1,0 +1,24 @@
+@import '../../../styles/base/variables';
+
+.plugin-rating {
+  display: flex;
+  flex-direction: column;
+
+  &-caption {
+    font-size: $font-size-h4;
+    color: $medium-gray;
+    margin-left: $building-unit;
+    line-height: 28px;
+  }
+
+  &-number {
+    color: $dark;
+    font-size: $font-size-h1;
+    margin: 0;
+  }
+
+  &-text {
+    display: flex;
+    align-items: flex-end;
+  }
+}

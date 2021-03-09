@@ -1,6 +1,7 @@
 @import '../../../styles/base/variables';
 
 .button {
+  display: inline-block;
   background-color: transparent;
   border: 1px solid $light-gray;
   border-radius: $building-unit-x3;
@@ -10,7 +11,6 @@
   outline: none;
   transition: $default-transition;
   margin: 0 $building-unit-x0_5;
-  min-width: 150px;
 
   @media ($mobile) {
     min-width: 80px;
@@ -37,6 +37,36 @@
       pointer-events: none;
       cursor: default;
       opacity: 0.5;
+    }
+  }
+
+  &-round {
+    height: $building-unit-x5;
+    width: $building-unit-x5;
+    padding: 0;
+    border-radius: 50%;
+
+    @media ($mobile) {
+      min-width: $building-unit-x5;
+    }
+  }
+}
+
+$pale-white: rgba(255, 255, 255, 0.8);
+
+.addButton {
+  display: flex;
+  align-items: center;
+  border-color: $pale-white;
+  color: $pale-white;
+  min-width: auto;
+  padding: $building-unit $building-unit-x2;
+
+  &-text {
+    margin-left: $building-unit;
+
+    @media ($mobile) {
+      display: none;
     }
   }
 }
