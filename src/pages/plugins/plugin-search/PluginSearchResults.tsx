@@ -6,7 +6,6 @@ import styles from './plugin-search.module.scss';
 import { Input } from '../../../components/common/input/Input';
 import { SearchIcon } from '../../../components/common/icons/SearchIcon';
 import { fetchPlugins } from '../../../store/features/plugins/thunkActions';
-import { setSearchValue } from '../../../store/features/plugins';
 import { RootState } from '../../../store/rootReducer';
 import { getPlugins, getTotalPluginCount } from '../../../store/features/plugins/selectors';
 import { getLoadingStatus } from '../../../store/features/base/selectors';
@@ -21,15 +20,13 @@ export interface ISearchResultsProps {
   pluginsTotalCount: number;
   fetchPluginsConnect: (params?: IPluginQueryParams) => void;
   loadingFromApi: boolean;
-  setSearchValueConnect: (value: string) => void;
 }
 
 const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
   plugins,
   pluginsTotalCount,
   loadingFromApi,
-  fetchPluginsConnect,
-  setSearchValueConnect
+  fetchPluginsConnect
 }) => {
   const DEFAULT_PAGE_SIZE = 12;
   const history = useHistory();
@@ -39,7 +36,8 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
 
   useEffect(() => {
     fetchPluginsConnect({ query, limit });
-  }, [fetchPluginsConnect, limit, query]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchPluginsConnect, limit]);
 
   const onChange = (val: string) => {
     setQuery(val);
@@ -88,8 +86,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
 };
 
 const mapDispatchToProps = {
-  fetchPluginsConnect: fetchPlugins,
-  setSearchValueConnect: setSearchValue
+  fetchPluginsConnect: fetchPlugins
 };
 
 const mapStateToProps = (state: RootState) => ({

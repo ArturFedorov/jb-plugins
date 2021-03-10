@@ -1,6 +1,6 @@
 export interface IPluginQueryParams {
   query?: string;
-  code?: 'latest' | 'popular';
+  category?: 'latest' | 'popular';
   offset?: number;
   limit?: number;
 }

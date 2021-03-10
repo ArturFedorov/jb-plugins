@@ -5,7 +5,8 @@
   background-color: $dark-gray;
   border-radius: $building-unit-x0_5;
   padding: $building-unit-x2;
-  transition: $default-transition;
+  transition: $long-transition ease-in-out;
+  opacity: 1;
   width: 364px;
 
   &-content {
@@ -18,6 +19,12 @@
 
   &-header {
     margin: 0 0 $building-unit-x0_5 0;
+  }
+
+  &-hidden {
+    transform: translateY(500px);
+    opacity: 0;
+    visibility: hidden;
   }
 
   &-link {

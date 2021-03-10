@@ -28,14 +28,14 @@ export const fetchPlugin = (id: string): AppThunk => (dispatch) => {
 };
 
 export const fetchLatestPlugins = (): AppThunk => (dispatch) => {
-  PluginService.getPlugins({ code: 'latest', limit: 9 }).then(({ data }) => {
+  PluginService.getPlugins({ category: 'latest', limit: 9 }).then(({ data }) => {
     dispatch(setLatestPlugins({ plugins: data.payload }));
     dispatch(setPluginsTotalCount(data.total));
   });
 };
 
 export const fetchPopularPlugins = (): AppThunk => (dispatch) => {
-  PluginService.getPlugins({ code: 'popular', limit: 9 }).then(({ data }) => {
+  PluginService.getPlugins({ category: 'popular', limit: 9 }).then(({ data }) => {
     dispatch(setPopularPlugins({ plugins: data.payload }));
   });
 };

@@ -19,15 +19,16 @@ export const Modal: FunctionComponent<IModalProps> = ({
 }) => {
   return (
     <div>
-      {showModal && (
-        <div className={styles.module} onClick={onClose}>
-          <div className={styles.moduleContent} onClick={(event) => event.stopPropagation()}>
-            <h3 className={classNames('is-lighter', styles.moduleHeader)}>{header}</h3>
-            <p className={styles.moduleMessage}>{message}</p>
-            <div>{children}</div>
-          </div>
+      <div
+        className={classNames(styles.module, { [styles.moduleHidden]: !showModal })}
+        onClick={onClose}
+      >
+        <div className={styles.moduleContent} onClick={(event) => event.stopPropagation()}>
+          <h3 className={classNames('is-lighter', styles.moduleHeader)}>{header}</h3>
+          <p className={styles.moduleMessage}>{message}</p>
+          <div>{children}</div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

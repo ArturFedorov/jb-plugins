@@ -13,6 +13,7 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import styles from './plugin-detail.module.scss';
 import { PluginIcon } from '../../../components/plugins/plugin-icon/PluginIcon';
 import { PluginRating } from '../../../components/plugins/plugin-rating/PluginRating';
+import { PluginShare } from '../../../components/plugins/plugin-share/PluginShare';
 import { StarRating } from '../../../components/common/star-rating/StarRating';
 import { Button } from '../../../components/common/button/Button';
 import { DownloadLink } from '../../../components/common/button/DownloadLink';
@@ -48,6 +49,7 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [hideSharePanel, setHideSharePanel] = useState(true);
 
   useEffect(() => {
     if (pluginDeletedSuccess && !pluginDeletedFailed) {
@@ -76,7 +78,7 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   };
 
   const onShareClick = () => {
-    // TODO implement
+    setHideSharePanel(false);
   };
 
   const onDeleteClick = () => {
@@ -168,6 +170,7 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
           </div>
         </div>
       </div>
+      <PluginShare hidePanel={hideSharePanel} onClose={() => setHideSharePanel(true)} />
     </div>
   );
 };

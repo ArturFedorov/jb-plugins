@@ -10,8 +10,15 @@
   bottom: 0;
   right: 0;
   left: 0;
-  transition: $default-transition;
+  transition: $quick-transition;
   z-index: $top-z-index;
+  transform: scaleY(1);
+
+  &-hidden {
+    z-index: -10;
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
 
   &-header {
     margin: 0 0 $building-unit-x4 0;
@@ -28,6 +35,7 @@
     padding: 3rem 3rem 2rem 3rem;
     position: relative;
     z-index: $top-z-index;
+    transition: $default-transition;
 
     @media ($tablet) {
       margin: 0 $building-unit-x4;

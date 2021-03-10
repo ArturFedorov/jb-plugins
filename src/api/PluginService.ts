@@ -8,7 +8,7 @@ export class PluginService {
     return axios.get<IGetPayload<IPlugin>>('/plugins', {
       params: {
         query: params?.query,
-        code: params?.code,
+        category: params?.category,
         limit: params?.limit || 100,
         offset: params?.offset || 0
       }
