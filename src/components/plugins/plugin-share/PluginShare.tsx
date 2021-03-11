@@ -12,8 +12,16 @@ import {
 } from 'react-share';
 import { CircledCross } from '../../common/icons/CircledCross';
 import styles from './plugin-share.module.scss';
+import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 
-export const PluginShare: FunctionComponent<{ hidePanel: boolean; onClose: () => void }> = ({
+export interface IPluginShareProps {
+  plugin: IPlugin;
+  hidePanel: boolean;
+  onClose: () => void;
+}
+
+export const PluginShare: FunctionComponent<IPluginShareProps> = ({
+  plugin,
   hidePanel = true,
   onClose
 }) => {
@@ -22,26 +30,30 @@ export const PluginShare: FunctionComponent<{ hidePanel: boolean; onClose: () =>
       <div className="container">
         <div className={styles.pluginShareList}>
           <LinkedinShareButton
-            url="http://localhost:3000/plugins/60"
-            title="123"
-            summary="asas"
-            source="asas"
+            url={window.location.href}
+            title={plugin.name}
+            summary={plugin.description}
+            source="jb-plugins"
           >
             <LinkedinIcon className={styles.pluginShareIcon} />
           </LinkedinShareButton>
           <TwitterShareButton
-            url="http://localhost:3000/plugins/60"
-            title="123"
-            via="123"
-            hashtags={['asas']}
-            related={['asas']}
+            url={window.location.href}
+            title={plugin.name}
+            via={plugin.description}
+            hashtags={['jbplugins', 'jbmarketplace']}
+            related={['jet brains']}
           >
             <TwitterIcon className={styles.pluginShareIcon} />
           </TwitterShareButton>
-          <FacebookShareButton url="http://localhost:3000/plugins/60" quote="123" hashtag="asas">
+          <FacebookShareButton
+            url={window.location.href}
+            quote={plugin.name}
+            hashtag="jbmarketplace"
+          >
             <FacebookIcon className={styles.pluginShareIcon} />
           </FacebookShareButton>
-          <TelegramShareButton url="http://localhost:3000/plugins/60" title="123">
+          <TelegramShareButton url={window.location.href} title={plugin.name}>
             <TelegramIcon className={styles.pluginShareIcon} />
           </TelegramShareButton>
           <div className={styles.pluginShareClose} onClick={onClose}>

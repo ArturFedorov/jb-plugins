@@ -4,7 +4,7 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { PluginCard } from '../plugin-card/PluginCard';
 import { PluginPlaceholder } from '../plugin-placeholder/PluginPlaceholder';
 import styles from '../plugins.module.scss';
-import { createArrayFromNumber } from '../../../shared/utils/format.util';
+import { createArrayFromNumber } from '../../../shared/utils/format-util/format.util';
 
 export interface IPluginListProps {
   header?: string;

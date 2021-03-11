@@ -24,7 +24,7 @@ import { LoadingState } from '../../../shared/enums/LoadingState';
 import images1 from '../../../assets/images/scrennshot1.png';
 import images2 from '../../../assets/images/scrennshot2.png';
 import { Tooltip } from '../../../components/common/tooltip/Tooltip';
-import { formatNumber } from '../../../shared/utils/format.util';
+import { formatNumber } from '../../../shared/utils/format-util/format.util';
 import { setPluginDeletedFailed, setPluginDeletedSuccess } from '../../../store/features/plugins';
 
 export interface IPluginDetailsProps {
@@ -170,7 +170,11 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
           </div>
         </div>
       </div>
-      <PluginShare hidePanel={hideSharePanel} onClose={() => setHideSharePanel(true)} />
+      <PluginShare
+        plugin={plugin}
+        hidePanel={hideSharePanel}
+        onClose={() => setHideSharePanel(true)}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import pluginIcon from '../../../assets/icons/jetbrains-logo.svg';
-import { getIconUrl } from '../../../shared/utils/format.util';
+import { getIconUrl } from '../../../shared/utils/format-util/format.util';
 
 export interface IPluginIconProps {
   iconUrl: string;

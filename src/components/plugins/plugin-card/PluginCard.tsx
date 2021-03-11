@@ -5,8 +5,8 @@ import { StarRating } from '../../common/star-rating/StarRating';
 import { PluginIcon } from '../plugin-icon/PluginIcon';
 import styles from '../plugins.module.scss';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
-import dateFormat from '../../../shared/utils/date.util';
-import { formatNumber } from '../../../shared/utils/format.util';
+import dateFormat from '../../../shared/utils/date-util/date.util';
+import { formatNumber } from '../../../shared/utils/format-util/format.util';
 
 export interface IPluginCardProps {
   plugin: IPlugin;
