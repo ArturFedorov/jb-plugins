@@ -6,6 +6,10 @@ export interface IBaseState {
   error: IError | undefined;
 }
 
+/**
+ * Base slice
+ * global state properties used across the project
+ */
 const base = createSlice({
   name: 'base',
   initialState: {

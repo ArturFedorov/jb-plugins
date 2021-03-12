@@ -4,6 +4,10 @@ import { IError } from '../../shared/interfaces/api/IError';
 import store from '../../store/store';
 import { setError, setLoading } from '../../store/features/base';
 
+/**
+ * Global api error handling
+ * @param error
+ */
 export default function errorResponseHandler(error: AxiosError) {
   if (isAxiosRequestConfigExtended(error.config)) {
     return Promise.reject(error);

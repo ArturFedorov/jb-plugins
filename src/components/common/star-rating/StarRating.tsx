@@ -13,6 +13,11 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
   const MAX_RATING_COUNT = 10;
   const STAR_ICON_WIDTH = 24;
 
+  /**
+   * Calculates ration of a star that should be covered
+   * based on rating
+   * @param index
+   */
   const calculateClipPathRatio = (index: number) => {
     if (!rating || rating === 0) return 0;
     const itemRating = index + 1;
@@ -20,6 +25,7 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
       return itemRating - rating > 1 ? 0 : Math.abs(itemRating - rating - 1);
     }
 
+    // color start 100% if star index less then rating
     return 1;
   };
 

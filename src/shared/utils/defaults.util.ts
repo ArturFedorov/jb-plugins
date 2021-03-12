@@ -1,5 +1,8 @@
 import { IPlugin } from '../interfaces/models/IPlugin';
 
+/**
+ * Helper util for creating empty plugin
+ */
 export class DefaultsUtil {
   static defaultPlugin: IPlugin = {
     name: '',
