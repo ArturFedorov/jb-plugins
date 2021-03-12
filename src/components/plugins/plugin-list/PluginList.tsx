@@ -11,13 +11,17 @@ export interface IPluginListProps {
   plugins: IPlugin[];
   isCentered?: boolean;
   isLoading?: boolean;
+  numberOfPlaceholders?: number;
 }
+
+export const DEFAULT_NUMBER_OF_PLACEHOLDERS = 6;
 
 export const PluginList: FunctionComponent<IPluginListProps> = ({
   plugins,
   isCentered = false,
   isLoading = false,
-  header = 'Most Popular'
+  header = 'Most Popular',
+  numberOfPlaceholders = DEFAULT_NUMBER_OF_PLACEHOLDERS
 }) => {
   return (
     <div className={styles.pluginList}>
@@ -27,7 +31,10 @@ export const PluginList: FunctionComponent<IPluginListProps> = ({
           [styles.pluginListContentCentered]: isCentered
         })}
       >
-        {isLoading && createArrayFromNumber(6).map((item) => <PluginPlaceholder key={item} />)}
+        {isLoading &&
+          createArrayFromNumber(numberOfPlaceholders).map((item) => (
+            <PluginPlaceholder key={item} />
+          ))}
         {!isLoading && plugins.map((plugin) => <PluginCard key={plugin.id} plugin={plugin} />)}
 
         {!isLoading && plugins.length === 0 && (
