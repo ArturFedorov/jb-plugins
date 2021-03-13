@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useRef } from 'react';
 import classNames from 'classnames';
 import { AboutHeader } from '../../components/about/about-header/AboutHeader';
 import { AboutSection } from '../../components/about/about-section/AboutSection';
@@ -7,7 +7,7 @@ import { Button } from '../../components/common/button/Button';
 
 const AboutPage: FunctionComponent = () => {
   return (
-    <div className={styles.about}>
+    <div id="about" className={styles.about}>
       <div className="container">
         <AboutHeader />
       </div>
@@ -29,7 +29,7 @@ const AboutPage: FunctionComponent = () => {
         </div>
       </div>
       <div className="container">
-        <div>
+        <div id="folder">
           <AboutSection order="1." header="Folder structure">
             <div className={styles.aboutSection}>
               <span className={classNames(styles.aboutParagraph, 'is-underlined')}>
@@ -69,23 +69,23 @@ const AboutPage: FunctionComponent = () => {
               <span className={classNames(styles.aboutParagraph, 'is-underlined')}>Store:</span>
               <span className={styles.aboutParagraph}>
                 State management solution based on redux toolkit, broken down by features. More in
-                <span className={classNames(styles.aboutParagraph, 'is-link')}>
+                <a href="#state" className={classNames(styles.aboutParagraph, 'is-link')}>
                   STATE MANAGEMENT
-                </span>
+                </a>
               </span>
             </div>
           </AboutSection>
         </div>
-        <div>
+        <div id="state">
           <AboutSection order="2." header="State management"></AboutSection>
         </div>
-        <div>
+        <div id="ci">
           <AboutSection order="3." header="CI/CD"></AboutSection>
         </div>
-        <div>
+        <div id="styling">
           <AboutSection order="4." header="Styling"></AboutSection>
         </div>
-        <div>
+        <div id="webpack">
           <AboutSection order="5." header="Webpack"></AboutSection>
         </div>
       </div>

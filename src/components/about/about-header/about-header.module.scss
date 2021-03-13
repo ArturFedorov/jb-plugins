@@ -17,11 +17,16 @@
 
   &-link {
     color: $light-gray;
+    cursor: pointer;
     font-family: "JetBrains Mono";
     font-size: $font-regular;
     margin: 0 $building-unit;
     text-transform: uppercase;
     transition: $default-transition;
+
+    @media ($tablet) {
+      display: none;
+    }
 
     &:first-child {
       margin-left: 0;
