@@ -1,0 +1,50 @@
+@import '../../../styles/base/variables';
+
+.about-header {
+  display: flex;
+  background-color: $gray-blue;
+  height: $header-height;
+  width: 100%;
+
+  &-action {
+    margin-left: auto;
+
+    > button {
+      font-family: "JetBrains Mono" !important;
+      transform: scale(0.8);
+    }
+  }
+
+  &-link {
+    color: $light-gray;
+    font-family: "JetBrains Mono";
+    font-size: $font-regular;
+    margin: 0 $building-unit;
+    text-transform: uppercase;
+    transition: $default-transition;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &-navigation {
+    display: flex;
+    align-items: center;
+    margin: 0 $building-unit-x2;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+  }
+
+  &-logo {
+    width: 73px;
+  }
+}

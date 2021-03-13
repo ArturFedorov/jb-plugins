@@ -1,0 +1,62 @@
+@import '../../styles/base/variables';
+@import '../../styles/utils/animations';
+
+.about {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  background-color: $gray-blue !important;
+  z-index: $top-z-index;
+
+  &-action {
+    > button {
+      font-family: "JetBrains Mono";
+    }
+  }
+
+  &-caption {
+    color: $light-gray;
+    font-family: "JetBrains Mono";
+    margin-left: $building-unit-x2;
+  }
+
+  &-blinking {
+    animation: blink-animation 1s infinite !important;
+  }
+
+  &-header {
+    color: $white;
+    font-size: 100px;
+    font-family: JetBrains Mono;
+    line-height: 110%;
+    font-weight: 600;
+    margin-top: $building-unit-x12;
+    animation: appear 0.9s;
+  }
+
+  &-subheader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 150px;
+  }
+
+  &-paragraph {
+    display: block;
+    font-family: "JetBrains Mono";
+    font-size: $font-size-h4;
+    color: $white;
+    line-height: 150%;
+
+    > .is-link {
+      color: $blue;
+      font-weight: $font-medium;
+    }
+  }
+
+  &-section {
+    margin-bottom: $building-unit-x3;
+  }
+}
