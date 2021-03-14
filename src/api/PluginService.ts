@@ -3,6 +3,10 @@ import { IGetPayload } from '../shared/interfaces/api/IGetPayload';
 import { INewPlugin, IPlugin } from '../shared/interfaces/models/IPlugin';
 import { IPluginQueryParams } from '../shared/interfaces/api/IPluginQueryParams';
 
+// TODO refactor with configuration
+const apiPrefix = process.env.REACT_APP_API_PREFIX;
+const urlWithPrefix = (url: string) => `${apiPrefix}${url}`;
+
 export class PluginService {
   /**
    * GET plugins based on query
@@ -10,7 +14,7 @@ export class PluginService {
    * @returns payload object with plugin list and total number
    */
   static getPlugins(params?: IPluginQueryParams) {
-    return axios.get<IGetPayload<IPlugin>>('/plugins', {
+    return axios.get<IGetPayload<IPlugin>>(urlWithPrefix('/plugins'), {
       params: {
         query: params?.query,
         category: params?.category,
@@ -26,7 +30,7 @@ export class PluginService {
    * @returns plugin
    */
   static getPluginById(id: string) {
-    return axios.get<IPlugin>(`/plugins/${id}`);
+    return axios.get<IPlugin>(urlWithPrefix(`/plugins/${id}`));
   }
 
   /**
@@ -37,7 +41,7 @@ export class PluginService {
   static addPlugin(plugin: INewPlugin) {
     const { name, author, description, icon } = plugin;
 
-    return axios.post<INewPlugin>('/plugins/upload', {
+    return axios.post<INewPlugin>(urlWithPrefix('/plugins/upload'), {
       name,
       author,
       description,
@@ -52,6 +56,6 @@ export class PluginService {
    * @returns OK
    */
   static deletePlugin(id: string) {
-    return axios.delete(`/plugins/delete/${id}`);
+    return axios.delete(urlWithPrefix(`/plugins/delete/${id}`));
   }
 }
