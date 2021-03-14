@@ -21,8 +21,9 @@
     color: $light-gray;
     cursor: pointer;
     font-family: "JetBrains Mono";
-    font-size: $font-regular;
-    margin: 0 $building-unit;
+    font-size: $font-size-regular;
+    padding: 0 $building-unit-x1_5;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     text-transform: uppercase;
     transition: $default-transition;
 
@@ -30,12 +31,12 @@
       display: none;
     }
 
-    &:first-child {
-      margin-left: 0;
+    &:last-child {
+      border-right: none;
     }
 
-    &:last-child {
-      margin-right: 0;
+    &:first-child {
+      padding-left: 0;
     }
 
     &:hover {
