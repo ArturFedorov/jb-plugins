@@ -26,9 +26,15 @@ export const AboutHeader: FunctionComponent = () => {
         <a href="#webpack" className={styles.aboutHeaderLink}>
           Webpack
         </a>
-        <div className={styles.aboutHeaderAction}>
-          <Button action>Download PDF</Button>
-        </div>
+        <a href="#design" className={styles.aboutHeaderLink}>
+          Design
+        </a>
+        <a href="#3rd" className={styles.aboutHeaderLink}>
+          3rdParty
+        </a>
+        <NavLink to="/" className={styles.aboutHeaderAction}>
+          <Button action>Back to App</Button>
+        </NavLink>
       </nav>
     </div>
   );
