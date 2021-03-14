@@ -15,9 +15,6 @@ addons:
   chrome: stable
 install:
   - yarn install
-before_script:
-  - yarn global add @vue/cli
-  - yarn global add firebase-tools
 script:
   - yarn run lint
   - yarn run test

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Icon, IconProps } from '../icon/Icon';
-import { generateUniqueId } from '../../../shared/utils/format.util';
+import { generateUniqueId } from '../../../shared/utils/format-util/format.util';
 
 export interface IStarRatingProps extends IconProps {
   clipPathWidth?: number;

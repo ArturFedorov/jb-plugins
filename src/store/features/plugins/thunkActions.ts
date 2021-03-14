@@ -15,6 +15,8 @@ import {
   setShowPluginModal
 } from './index';
 
+const DEFAULT_VISIBLE_PLUGINS = 9;
+
 export const fetchPlugins = (params?: IPluginQueryParams): AppThunk => (dispatch) => {
   PluginService.getPlugins(params).then(({ data }) => {
     dispatch(setPlugins({ plugins: data.payload }));
@@ -28,16 +30,20 @@ export const fetchPlugin = (id: string): AppThunk => (dispatch) => {
 };
 
 export const fetchLatestPlugins = (): AppThunk => (dispatch) => {
-  PluginService.getPlugins({ code: 'latest', limit: 9 }).then(({ data }) => {
-    dispatch(setLatestPlugins({ plugins: data.payload }));
-    dispatch(setPluginsTotalCount(data.total));
-  });
+  PluginService.getPlugins({ category: 'latest', limit: DEFAULT_VISIBLE_PLUGINS }).then(
+    ({ data }) => {
+      dispatch(setLatestPlugins({ plugins: data.payload }));
+      dispatch(setPluginsTotalCount(data.total));
+    }
+  );
 };
 
 export const fetchPopularPlugins = (): AppThunk => (dispatch) => {
-  PluginService.getPlugins({ code: 'popular', limit: 9 }).then(({ data }) => {
-    dispatch(setPopularPlugins({ plugins: data.payload }));
-  });
+  PluginService.getPlugins({ category: 'popular', limit: DEFAULT_VISIBLE_PLUGINS }).then(
+    ({ data }) => {
+      dispatch(setPopularPlugins({ plugins: data.payload }));
+    }
+  );
 };
 
 export const deletePlugin = (id: string): AppThunk => (dispatch) => {

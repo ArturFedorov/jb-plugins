@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { AddButton } from '../../common/button/AddButton';
+import { IconButton } from '../../common/button/IconButton';
+import { InfoIcon } from '../../common/icons/InfoIcon';
 import logo from '../../../assets/icons/logo.svg';
 import styles from './header.module.scss';
 import { Routes } from '../../../routes';
@@ -21,8 +22,11 @@ export const Header: FunctionComponent = () => {
           </NavLink>
         </div>
         <div className={styles.headerSection}>
+          <NavLink to={Routes.ABOUT}>
+            <IconButton icon={<InfoIcon height={18} width={18} />} text="About my solution" />
+          </NavLink>
           <NavLink to={Routes.PLUGIN_ADD}>
-            <AddButton text="Add plugin" />
+            <IconButton text="Add plugin" />
           </NavLink>
         </div>
       </div>

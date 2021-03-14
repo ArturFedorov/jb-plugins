@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import pluginIcon from '../../../assets/icons/jetbrains-logo.svg';
-import { getIconUrl } from '../../../shared/utils/format.util';
+import { LoaderIcon } from '../../common/icons/LoaderIcon';
+import { getIconUrl } from '../../../shared/utils/format-util/format.util';
 
 export interface IPluginIconProps {
   iconUrl: string;
@@ -8,7 +8,7 @@ export interface IPluginIconProps {
 }
 
 export const PluginIcon: FunctionComponent<IPluginIconProps> = ({ iconUrl, className }) => {
-  const [imgSrc, setImgSrc] = useState(pluginIcon);
+  const [imgSrc, setImgSrc] = useState('');
 
   useEffect(() => {
     setImgSrc(iconUrl);
@@ -18,6 +18,10 @@ export const PluginIcon: FunctionComponent<IPluginIconProps> = ({ iconUrl, class
   const onImageLoadError = () => {
     setImgSrc(getIconUrl());
   };
+
+  if (!imgSrc) {
+    return <LoaderIcon />;
+  }
 
   return <img className={className} src={imgSrc} onError={onImageLoadError} alt="plugin" />;
 };

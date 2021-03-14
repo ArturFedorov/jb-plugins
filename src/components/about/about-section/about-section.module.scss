@@ -1,0 +1,29 @@
+@import '../../../styles/base/variables';
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  padding: $building-unit-x3 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  &-content {
+    padding: $building-unit-x3 $building-unit-x4 0 $building-unit-x4;
+  }
+
+  &-heading {
+    display: flex;
+  }
+
+  &-header {
+    color: $white;
+    font-family: "JetBrains Mono", Helvetica;
+    margin: 0;
+    line-height: 100%;
+  }
+
+  &-order {
+    margin-right: $building-unit-x2;
+    font-family: "JetBrains Mono", Helvetica;
+    color: $white;
+  }
+}

@@ -67,6 +67,10 @@ p {
   }
 }
 
+.is-bold {
+  font-weight: $font-bold;
+}
+
 .is-uppercase {
   text-transform: uppercase;
 }
@@ -95,4 +99,8 @@ p {
 
 .is-error-text {
   color: $crimson;
+}
+
+.is-green-text {
+  color: $green;
 }

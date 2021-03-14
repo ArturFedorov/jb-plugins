@@ -13,6 +13,7 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import styles from './plugin-detail.module.scss';
 import { PluginIcon } from '../../../components/plugins/plugin-icon/PluginIcon';
 import { PluginRating } from '../../../components/plugins/plugin-rating/PluginRating';
+import { PluginShare } from '../../../components/plugins/plugin-share/PluginShare';
 import { StarRating } from '../../../components/common/star-rating/StarRating';
 import { Button } from '../../../components/common/button/Button';
 import { DownloadLink } from '../../../components/common/button/DownloadLink';
@@ -23,7 +24,7 @@ import { LoadingState } from '../../../shared/enums/LoadingState';
 import images1 from '../../../assets/images/scrennshot1.png';
 import images2 from '../../../assets/images/scrennshot2.png';
 import { Tooltip } from '../../../components/common/tooltip/Tooltip';
-import { formatNumber } from '../../../shared/utils/format.util';
+import { formatNumber } from '../../../shared/utils/format-util/format.util';
 import { setPluginDeletedFailed, setPluginDeletedSuccess } from '../../../store/features/plugins';
 
 export interface IPluginDetailsProps {
@@ -48,8 +49,10 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [hideSharePanel, setHideSharePanel] = useState(true);
 
   useEffect(() => {
+    // redirect after success deletion
     if (pluginDeletedSuccess && !pluginDeletedFailed) {
       history.push('/');
     }
@@ -76,7 +79,7 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   };
 
   const onShareClick = () => {
-    // TODO implement
+    setHideSharePanel(false);
   };
 
   const onDeleteClick = () => {
@@ -168,6 +171,11 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
           </div>
         </div>
       </div>
+      <PluginShare
+        plugin={plugin}
+        hidePanel={hideSharePanel}
+        onClose={() => setHideSharePanel(true)}
+      />
     </div>
   );
 };

@@ -4,20 +4,24 @@ import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { PluginCard } from '../plugin-card/PluginCard';
 import { PluginPlaceholder } from '../plugin-placeholder/PluginPlaceholder';
 import styles from '../plugins.module.scss';
-import { createArrayFromNumber } from '../../../shared/utils/format.util';
+import { createArrayFromNumber } from '../../../shared/utils/format-util/format.util';
 
 export interface IPluginListProps {
   header?: string;
   plugins: IPlugin[];
   isCentered?: boolean;
   isLoading?: boolean;
+  numberOfPlaceholders?: number;
 }
+
+export const DEFAULT_NUMBER_OF_PLACEHOLDERS = 6;
 
 export const PluginList: FunctionComponent<IPluginListProps> = ({
   plugins,
   isCentered = false,
   isLoading = false,
-  header = 'Most Popular'
+  header = 'Most Popular',
+  numberOfPlaceholders = DEFAULT_NUMBER_OF_PLACEHOLDERS
 }) => {
   return (
     <div className={styles.pluginList}>
@@ -27,7 +31,10 @@ export const PluginList: FunctionComponent<IPluginListProps> = ({
           [styles.pluginListContentCentered]: isCentered
         })}
       >
-        {isLoading && createArrayFromNumber(6).map((item) => <PluginPlaceholder key={item} />)}
+        {isLoading &&
+          createArrayFromNumber(numberOfPlaceholders).map((item) => (
+            <PluginPlaceholder key={item} />
+          ))}
         {!isLoading && plugins.map((plugin) => <PluginCard key={plugin.id} plugin={plugin} />)}
 
         {!isLoading && plugins.length === 0 && (

@@ -15,6 +15,10 @@ interface AxiosLoadingError extends AxiosError {
   config: AxiosLoadingRequestConfig;
 }
 
+/**
+ * Manage loading state globally
+ * Can be disabled via options in axios via extended configuration
+ */
 axios.interceptors.request.use(
   (config: AxiosLoadingRequestConfig) => {
     if (isAxiosRequestConfigExtended(config) && config.noLoader) {

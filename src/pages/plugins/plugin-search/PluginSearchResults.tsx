@@ -6,9 +6,8 @@ import styles from './plugin-search.module.scss';
 import { Input } from '../../../components/common/input/Input';
 import { SearchIcon } from '../../../components/common/icons/SearchIcon';
 import { fetchPlugins } from '../../../store/features/plugins/thunkActions';
-import { setSearchValue } from '../../../store/features/plugins';
 import { RootState } from '../../../store/rootReducer';
-import { getPlugins, getTotalPluginCount } from '../../../store/features/plugins/selectors';
+import { getPlugins } from '../../../store/features/plugins/selectors';
 import { getLoadingStatus } from '../../../store/features/base/selectors';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { PluginList } from '../../../components/plugins/plugin-list/PluginList';
@@ -18,18 +17,14 @@ import { Routes } from '../../../routes';
 
 export interface ISearchResultsProps {
   plugins: IPlugin[];
-  pluginsTotalCount: number;
   fetchPluginsConnect: (params?: IPluginQueryParams) => void;
   loadingFromApi: boolean;
-  setSearchValueConnect: (value: string) => void;
 }
 
 const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
   plugins,
-  pluginsTotalCount,
   loadingFromApi,
-  fetchPluginsConnect,
-  setSearchValueConnect
+  fetchPluginsConnect
 }) => {
   const DEFAULT_PAGE_SIZE = 12;
   const history = useHistory();
@@ -39,7 +34,8 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
 
   useEffect(() => {
     fetchPluginsConnect({ query, limit });
-  }, [fetchPluginsConnect, limit, query]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchPluginsConnect, limit, searchValue]);
 
   const onChange = (val: string) => {
     setQuery(val);
@@ -49,7 +45,10 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
     // rerun search set pagination to initial value
     setLimit(12);
     history.push(`${Routes.PLUGIN_SEARCH_RESULTS}?query=${query}`);
-    fetchPluginsConnect({ query, limit });
+  };
+
+  const showMore = () => {
+    setLimit(limit + DEFAULT_PAGE_SIZE);
   };
 
   return (
@@ -72,10 +71,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
           <PluginList isLoading={loadingFromApi} header="" plugins={plugins} isCentered={true} />
           {Boolean(plugins.length) && (
             <div className={styles.pluginSearchMore}>
-              <span
-                className={styles.pluginSearchButton}
-                onClick={() => setLimit(limit + DEFAULT_PAGE_SIZE)}
-              >
+              <span className={styles.pluginSearchButton} onClick={showMore}>
                 <span className={styles.pluginSearchText}>Show More</span>
                 <ArrowIcon viewBox="0 0 18 18" height={18} width={18} fill="#167dff" />
               </span>
@@ -88,13 +84,11 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
 };
 
 const mapDispatchToProps = {
-  fetchPluginsConnect: fetchPlugins,
-  setSearchValueConnect: setSearchValue
+  fetchPluginsConnect: fetchPlugins
 };
 
 const mapStateToProps = (state: RootState) => ({
   plugins: getPlugins(state.plugins),
-  pluginsTotalCount: getTotalPluginCount(state.plugins),
   loadingFromApi: getLoadingStatus(state.base)
 });
 

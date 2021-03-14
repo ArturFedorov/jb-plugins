@@ -13,7 +13,7 @@ import { setPlugin } from '../../../store/features/plugins';
 import { INewPlugin, IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { DefaultsUtil } from '../../../shared/utils/defaults.util';
 import { addPlugin } from '../../../store/features/plugins/thunkActions';
-import { validURIRegExp } from '../../../shared/utils/format.util';
+import { validURIRegExp } from '../../../shared/utils/format-util/format.util';
 
 const PluginForm: FunctionComponent<{
   addPluginConnect: (newPlugin: INewPlugin) => void;
@@ -43,6 +43,8 @@ const PluginForm: FunctionComponent<{
   const submitPluginForm = () => {
     addPluginConnect(plugin);
   };
+
+  const goToMain = () => history.push('/');
 
   return (
     <form className={styles.pluginForm} onSubmit={handleSubmit(submitPluginForm)}>
@@ -140,7 +142,7 @@ const PluginForm: FunctionComponent<{
         <Button action onClick={handleSubmit(submitPluginForm)}>
           Add plugin
         </Button>
-        <Button onClick={() => history.goBack()}>Cancel</Button>
+        <Button onClick={goToMain}>Cancel</Button>
       </div>
     </form>
   );

@@ -23,26 +23,28 @@ const ErrorMessage: FunctionComponent<IErrorMessageProps> = ({
 }) => {
   return (
     <div>
-      {error && (
-        <div className={classNames(styles.errorMessage, className)}>
-          <div className={styles.errorMessageIcon}>
-            <CircledCross fill="#fb2046" />
-          </div>
-          <div className={styles.errorMessageContent}>
-            <h5 className={classNames(styles.errorMessageHeader, 'is-lighter is-white-text')}>
-              Error {error.status}
-            </h5>
-            <span className={classNames(styles.errorMessageText, 'is-gray-text is-caption')}>
-              {error.text}
-            </span>
-          </div>
-          <div className={styles.errorMessageClose}>
-            <span className={styles.errorMessageLink} onClick={() => setErrorConnect(undefined)}>
-              <CrossIcon fill="#ffffff" />
-            </span>
-          </div>
+      <div
+        className={classNames(styles.errorMessage, className, {
+          [styles.errorMessageHidden]: !error
+        })}
+      >
+        <div className={styles.errorMessageIcon}>
+          <CircledCross fill="#fb2046" />
         </div>
-      )}
+        <div className={styles.errorMessageContent}>
+          <h5 className={classNames(styles.errorMessageHeader, 'is-lighter is-white-text')}>
+            Error {error && error.status}
+          </h5>
+          <span className={classNames(styles.errorMessageText, 'is-gray-text is-caption')}>
+            {error && error.text}
+          </span>
+        </div>
+        <div className={styles.errorMessageClose}>
+          <span className={styles.errorMessageLink} onClick={() => setErrorConnect(undefined)}>
+            <CrossIcon fill="#ffffff" />
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

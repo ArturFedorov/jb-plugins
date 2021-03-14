@@ -1,3 +1,8 @@
+/**
+ * Excepts date a string
+ * @param dateString
+ * @returns formatted date dd.mm.yyyy
+ */
 export default function dateFormat(dateString: string) {
   const date = new Date(dateString);
   const day = date.getDate();
