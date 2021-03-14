@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import { StarIcon } from '../icons/StarIcon';
 import styles from './start-rating.module.scss';
 import { createArrayFromNumber } from '../../../shared/utils/format-util/format.util';
@@ -29,6 +29,8 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
     return 1;
   };
 
+  const calculateClipPathRatioCallback = useCallback(calculateClipPathRatio, [rating]);
+
   if (starCount > MAX_RATING_COUNT || starCount < MIN_RATING_COUNT) {
     throw Error(
       `Please, provide starCount value between ${MIN_RATING_COUNT} and ${MAX_RATING_COUNT}`
@@ -39,7 +41,7 @@ export const StarRating: FunctionComponent<IStarRatingProps> = ({ starCount = 5,
     <div className={styles.starIcon}>
       {createArrayFromNumber(starCount).map((item) => (
         <div className={styles.starIconItem} key={item}>
-          <StarIcon clipPathWidth={calculateClipPathRatio(item) * STAR_ICON_WIDTH} />
+          <StarIcon clipPathWidth={calculateClipPathRatioCallback(item) * STAR_ICON_WIDTH} />
         </div>
       ))}
     </div>

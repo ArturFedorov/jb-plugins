@@ -52,6 +52,7 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   const [hideSharePanel, setHideSharePanel] = useState(true);
 
   useEffect(() => {
+    // redirect after success deletion
     if (pluginDeletedSuccess && !pluginDeletedFailed) {
       history.push('/');
     }

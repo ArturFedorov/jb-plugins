@@ -35,7 +35,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
   useEffect(() => {
     fetchPluginsConnect({ query, limit });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchPluginsConnect, limit]);
+  }, [fetchPluginsConnect, limit, searchValue]);
 
   const onChange = (val: string) => {
     setQuery(val);
@@ -45,7 +45,6 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
     // rerun search set pagination to initial value
     setLimit(12);
     history.push(`${Routes.PLUGIN_SEARCH_RESULTS}?query=${query}`);
-    fetchPluginsConnect({ query, limit });
   };
 
   const showMore = () => {
