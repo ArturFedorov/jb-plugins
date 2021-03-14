@@ -44,7 +44,7 @@ const PluginForm: FunctionComponent<{
     addPluginConnect(plugin);
   };
 
-  const goBack = () => history.goBack();
+  const goToMain = () => history.push('/');
 
   return (
     <form className={styles.pluginForm} onSubmit={handleSubmit(submitPluginForm)}>
@@ -142,7 +142,7 @@ const PluginForm: FunctionComponent<{
         <Button action onClick={handleSubmit(submitPluginForm)}>
           Add plugin
         </Button>
-        <Button onClick={goBack}>Cancel</Button>
+        <Button onClick={goToMain}>Cancel</Button>
       </div>
     </form>
   );
