@@ -7,7 +7,7 @@ import { Input } from '../../../components/common/input/Input';
 import { SearchIcon } from '../../../components/common/icons/SearchIcon';
 import { fetchPlugins } from '../../../store/features/plugins/thunkActions';
 import { RootState } from '../../../store/rootReducer';
-import { getPlugins, getTotalPluginCount } from '../../../store/features/plugins/selectors';
+import { getPlugins } from '../../../store/features/plugins/selectors';
 import { getLoadingStatus } from '../../../store/features/base/selectors';
 import { IPlugin } from '../../../shared/interfaces/models/IPlugin';
 import { PluginList } from '../../../components/plugins/plugin-list/PluginList';
@@ -17,14 +17,12 @@ import { Routes } from '../../../routes';
 
 export interface ISearchResultsProps {
   plugins: IPlugin[];
-  pluginsTotalCount: number;
   fetchPluginsConnect: (params?: IPluginQueryParams) => void;
   loadingFromApi: boolean;
 }
 
 const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
   plugins,
-  pluginsTotalCount,
   loadingFromApi,
   fetchPluginsConnect
 }) => {
@@ -50,6 +48,10 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
     fetchPluginsConnect({ query, limit });
   };
 
+  const showMore = () => {
+    setLimit(limit + DEFAULT_PAGE_SIZE);
+  };
+
   return (
     <div className={styles.pluginSearch}>
       <div className="container">
@@ -70,10 +72,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
           <PluginList isLoading={loadingFromApi} header="" plugins={plugins} isCentered={true} />
           {Boolean(plugins.length) && (
             <div className={styles.pluginSearchMore}>
-              <span
-                className={styles.pluginSearchButton}
-                onClick={() => setLimit(limit + DEFAULT_PAGE_SIZE)}
-              >
+              <span className={styles.pluginSearchButton} onClick={showMore}>
                 <span className={styles.pluginSearchText}>Show More</span>
                 <ArrowIcon viewBox="0 0 18 18" height={18} width={18} fill="#167dff" />
               </span>
@@ -91,7 +90,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state: RootState) => ({
   plugins: getPlugins(state.plugins),
-  pluginsTotalCount: getTotalPluginCount(state.plugins),
   loadingFromApi: getLoadingStatus(state.base)
 });
 
