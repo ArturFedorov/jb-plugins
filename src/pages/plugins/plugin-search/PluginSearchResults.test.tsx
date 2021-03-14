@@ -2,9 +2,9 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom'
+import { Router } from 'react-router-dom';
 import { mockStore } from '../../../setupTests';
-import PluginSearchResults, { ISearchResultsProps } from './PluginSearchResults';
+import PluginSearchResults from './PluginSearchResults';
 import { TestUtil } from '../../../shared/utils/test.util';
 import { PluginCard } from '../../../components/plugins/plugin-card/PluginCard';
 
