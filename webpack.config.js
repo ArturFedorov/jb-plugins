@@ -64,14 +64,15 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              sourceMap: isEnvDevelopment
+              modules: true
+              // sourceMap: isEnvDevelopment
             }
           },
+          'resolve-url-loader',
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: isEnvDevelopment
+              sourceMap: true
             }
           }
         ]
@@ -82,17 +83,22 @@ module.exports = {
         use: [
           isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
+          'resolve-url-loader',
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: isEnvDevelopment
+              sourceMap: true
             }
           }
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource'
+        exclude: /node_modules/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]'
+        }
       }
     ]
   },
@@ -132,3 +138,5 @@ module.exports = {
     port: 5000
   }
 };
+
+console.log(isEnvDevelopment, 'asassa', process.env.NODE_ENV);

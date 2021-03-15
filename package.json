@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.13.0",
@@ -71,6 +72,7 @@
     "prettier": "^2.2.1",
     "react-app-rewired": "^2.1.8",
     "redux-mock-store": "^1.5.4",
+    "resolve-url-loader": "^3.1.2",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.25.1",
@@ -79,7 +81,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "serve": "webpack serve",
+    "serve": "webpack serve --stats-children",
     "build": "react-app-rewired build",
     "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts,tsx}\" --fix",
     "test": "react-app-rewired test",
