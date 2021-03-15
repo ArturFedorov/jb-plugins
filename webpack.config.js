@@ -14,7 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build')
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss']
   },
   module: {
     rules: [
@@ -58,25 +58,35 @@ module.exports = {
         ]
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.module\.s(a|c)ss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'style-loader'
-          },
+          isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                exportLocalsConvention: 'camelCaseOnly'
-              },
-              importLoaders: 1
+              modules: true,
+              sourceMap: isEnvDevelopment
             }
           },
           {
-            loader: 'sass-loader'
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isEnvDevelopment
+            }
+          }
+        ]
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        use: [
+          isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isEnvDevelopment
+            }
           }
         ]
       },
@@ -113,7 +123,10 @@ module.exports = {
           : undefined
       )
     ),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: isEnvDevelopment ? '[name].css' : '[name].[hash].css',
+      chunkFilename: isEnvDevelopment ? '[id].css' : '[id].[hash].css'
+    })
   ],
   devServer: {
     port: 5000
