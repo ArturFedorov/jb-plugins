@@ -64,6 +64,8 @@
   &-image {
     padding: $building-unit 0;
     width: 50%;
+    // for safari
+    max-height: 310px;
 
     @media ($mobile) {
       width: 100%;

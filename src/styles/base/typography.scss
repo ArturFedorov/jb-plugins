@@ -1,11 +1,7 @@
 * {
-  font-family: "Gotham SSm A",  Helvetica;
+  font-family: $font-family , Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  font-family: "Gotham Pro",  Helvetica;
 }
 
 h1, h2, h3, h5 {
