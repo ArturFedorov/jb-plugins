@@ -11,11 +11,17 @@ module.exports = {
   mode: isEnvDevelopment ? 'development' : 'production',
   entry: './src/index.tsx',
   output: {
-    filename: 'bundle.[chunkhash].js',
-    path: path.resolve(__dirname, 'build')
+    filename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, 'build'),
+    clean: true
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss']
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   module: {
     rules: [
@@ -104,6 +110,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin(
       // eslint-disable-next-line prefer-object-spread
@@ -135,9 +142,6 @@ module.exports = {
       filename: isEnvDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isEnvDevelopment ? '[id].css' : '[id].[hash].css'
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    }),
     new webpack.ProvidePlugin({
       process: 'process/browser'
     })
@@ -145,6 +149,7 @@ module.exports = {
   devServer: {
     port: 5000,
     historyApiFallback: true,
+    contentBase: './src',
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
