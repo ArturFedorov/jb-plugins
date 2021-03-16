@@ -4,7 +4,7 @@ import { INewPlugin, IPlugin } from '../shared/interfaces/models/IPlugin';
 import { IPluginQueryParams } from '../shared/interfaces/api/IPluginQueryParams';
 
 // TODO refactor with configuration
-const apiPrefix = process.env.REACT_APP_API_PREFIX;
+const apiPrefix = '/api';
 const urlWithPrefix = (url: string) => `${apiPrefix}${url}`;
 
 export class PluginService {

@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const svgToMiniDataURI = require('mini-svg-data-uri');
+const webpack = require('webpack');
 
 const isEnvDevelopment = process.env.NODE_ENV === 'development';
 const isEnvProduction = process.env.NODE_ENV === 'production';
@@ -64,15 +65,16 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true
-              // sourceMap: isEnvDevelopment
+              modules: {
+                exportLocalsConvention: 'camelCaseOnly'
+              }
             }
           },
           'resolve-url-loader',
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: isEnvDevelopment
             }
           }
         ]
@@ -87,7 +89,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: isEnvDevelopment
             }
           }
         ]
@@ -132,11 +134,23 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: isEnvDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isEnvDevelopment ? '[id].css' : '[id].[hash].css'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
     })
   ],
   devServer: {
-    port: 5000
+    port: 5000,
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' }
+      }
+    }
   }
 };
-
-console.log(isEnvDevelopment, 'asassa', process.env.NODE_ENV);
