@@ -54,6 +54,10 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
     setIsLoading(false);
   }, [debouncedSearch, setSearchValueConnect]);
 
+  const goToSearchResults = () => {
+    history.push(`${Routes.PLUGIN_SEARCH_RESULTS}?query=${search}&limit=12`);
+  };
+
   return (
     <div className="home-page">
       <div className="home-page-top">
@@ -68,9 +72,7 @@ const HomePage: FunctionComponent<IHomePageProps> = ({
                 setIsLoading(true);
                 setSearch(event);
               }}
-              onKeyEnter={() => {
-                history.push(`${Routes.PLUGIN_SEARCH_RESULTS}?query=${search}`);
-              }}
+              onKeyEnter={goToSearchResults}
             />
           </Panel>
         </div>

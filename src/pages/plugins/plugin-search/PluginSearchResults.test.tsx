@@ -45,6 +45,6 @@ describe('PluginSearchResults', () => {
     const input = component.find('input');
     input.simulate('change', { target: { value: testInputValue } });
     input.simulate('keypress', { key: 'Enter', target: { value: testInputValue } });
-    expect(history.location.search).toEqual(`?query=${testInputValue}`);
+    expect(history.location.search).toEqual(`?query=${testInputValue}&limit=12`);
   });
 });

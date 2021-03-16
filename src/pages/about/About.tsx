@@ -93,7 +93,7 @@ const AboutPage: FunctionComponent = () => {
               </span>
               <span className={styles.aboutParagraph}>
                 Writing own bindings and types is time-consuming for a test task.
-                <span className={classNames(styles.aboutParagraph, 'is-bold', 'is-error-text')}>
+                <span className={classNames(styles.aboutParagraph, 'is-bold', styles.isErrorText)}>
                   So i decided not to go with vuex.
                 </span>
               </span>
@@ -119,7 +119,7 @@ const AboutPage: FunctionComponent = () => {
                 Another point was frequent re-rendering on context change. We have to be careful and
                 use useMemo hook. For a project like this where time is essential. It may not be a
                 fast solution.
-                <span className={classNames(styles.aboutParagraph, 'is-bold', 'is-error-text')}>
+                <span className={classNames(styles.aboutParagraph, 'is-bold', styles.isErrorText)}>
                   So i decided not to go with React Context.
                 </span>
               </span>
@@ -149,7 +149,7 @@ const AboutPage: FunctionComponent = () => {
               <span className={styles.aboutParagraph}>
                 So based on all aforementioned factors, personal experience and time frames of
                 project
-                <span className={classNames(styles.aboutParagraph, 'is-bold', 'is-green-text')}>
+                <span className={classNames(styles.aboutParagraph, 'is-bold', styles.isGreenText)}>
                   I decided to go with @reduxjs/toolkit.
                 </span>
               </span>
@@ -206,7 +206,45 @@ const AboutPage: FunctionComponent = () => {
           </AboutSection>
         </div>
         <div id="webpack">
-          <AboutSection order="5." header="Webpack"></AboutSection>
+          <AboutSection order="5." header="Webpack">
+            <div className={styles.aboutSection}>
+              <span className={classNames(styles.aboutParagraph, 'is-underlined')}>
+                Create-react-app:
+              </span>
+              <span className={styles.aboutParagraph}>
+                To be honest, webpack configuration is not my strongest suite.
+              </span>
+              <span className={styles.aboutParagraph}>
+                I used pre-configured webpack from create-react-app (as task conditions allows it).
+              </span>
+              <span className={styles.aboutParagraph}>
+                Plus react-rewired in order to extend webpack config for additional scss modules
+                configuration.
+              </span>
+            </div>
+            <div className={styles.aboutSection}>
+              <span className={classNames(styles.aboutParagraph, 'is-underlined')}>Webpack:</span>
+              <span className={styles.aboutParagraph}>
+                Anyway, I also created basic webpack configuration in this
+                <a
+                  className={classNames(styles.aboutParagraph, styles.isLink, 'is-uppercase')}
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/ArturFedorov/jb-plugins/tree/JB-08-Webpack-configuration"
+                >
+                  branch
+                </a>
+              </span>
+              <span className={styles.aboutParagraph}>
+                It starts application in same dev mode as create-react-app. But completely
+                pre-configured from scratch.
+              </span>
+              <span className={styles.aboutParagraph}>
+                I am willing to invest a lot of time in order to cover this knowledge gap as soon as
+                possible.
+              </span>
+            </div>
+          </AboutSection>
         </div>
         <div id="design">
           <AboutSection order="6." header="Design">
