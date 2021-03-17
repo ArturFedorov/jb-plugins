@@ -52,7 +52,6 @@
     "@typescript-eslint/parser": "^4.14.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "babel-loader": "^8.2.2",
-    "cross-env": "^7.0.3",
     "css-loader": "^5.1.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -82,8 +81,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "serve": "cross-env NODE_ENV=development webpack serve",
-    "build": "cross-env NODE_ENV=production webpack",
+    "serve": "webpack serve --mode=development",
+    "build": "webpack --mode production",
     "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts,tsx}\" --fix",
     "test": "react-app-rewired test",
     "test:watch": "react-app-rewired test -- --watch",
