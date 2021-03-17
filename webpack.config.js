@@ -14,8 +14,7 @@ module.exports = (env, argv) => {
     entry: './src/index.tsx',
     output: {
       filename: '[name].[chunkhash].js',
-      path: path.resolve(__dirname, 'build'),
-      clean: true
+      path: path.resolve(__dirname, 'build')
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss']
