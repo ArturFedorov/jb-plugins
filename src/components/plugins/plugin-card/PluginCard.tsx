@@ -1,5 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
-import classNames from 'classnames';
+import React, { FunctionComponent, useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { StarRating } from '../../common/star-rating/StarRating';
 import { PluginIcon } from '../plugin-icon/PluginIcon';
@@ -14,15 +13,11 @@ export interface IPluginCardProps {
 }
 
 export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
-  const [cardHovered, setCardHovered] = useState<boolean>(false);
+  const formattedDownloads = useMemo(() => formatNumber(plugin.downloads), [plugin]);
+  const formattedDate = useMemo(() => dateFormat(plugin.date), [plugin]);
 
   return (
-    <NavLink
-      to={`/plugins/${plugin.id}`}
-      className={styles.pluginCardLink}
-      onMouseEnter={() => setCardHovered(true)}
-      onMouseLeave={() => setCardHovered(false)}
-    >
+    <NavLink to={`/plugins/${plugin.id}`} className={styles.pluginCardLink}>
       <div className={styles.pluginCard}>
         <div className={styles.pluginCardHeader}>
           <PluginIcon iconUrl={plugin.icon || pluginIcon} className={styles.pluginCardIcon} />
@@ -31,20 +26,12 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
             <StarRating rating={plugin.rating} />
           </div>
         </div>
-        <div
-          className={classNames(styles.pluginCardDescription, {
-            [styles.pluginCardDescriptionHovered]: cardHovered
-          })}
-        >
+        <div className={styles.pluginCardDescription}>
           <span>{plugin.description}</span>
         </div>
-        <div
-          className={classNames(styles.pluginCardFooter, {
-            [styles.pluginCardFooterHovered]: cardHovered
-          })}
-        >
-          <span className="is-caption">{formatNumber(plugin.downloads)} downloads</span>
-          <span className="is-caption">{dateFormat(plugin.date)}</span>
+        <div className={styles.pluginCardFooter}>
+          <span className="is-caption">{formattedDownloads} downloads</span>
+          <span className="is-caption">{formattedDate}</span>
         </div>
       </div>
     </NavLink>
