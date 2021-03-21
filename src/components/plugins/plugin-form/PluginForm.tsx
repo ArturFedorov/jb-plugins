@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -27,18 +27,24 @@ const PluginForm: FunctionComponent<{
   const description = watch('description');
   const history = useHistory();
 
+  const ref = useRef(0);
+  console.log(ref);
+  ref.current += 1;
+  console.log(ref);
+
   useEffect(() => {
     plugin.author = author;
     plugin.name = name;
     plugin.icon = icon;
     plugin.description = description;
 
+    console.log(plugin);
     setPluginConnect(plugin);
 
     return () => {
       setPluginConnect(DefaultsUtil.defaultPlugin);
     };
-  }, [setPluginConnect, name, author, icon, plugin, description]);
+  }, [setPluginConnect, name, icon, author, plugin, description]);
 
   const submitPluginForm = () => {
     addPluginConnect(plugin);

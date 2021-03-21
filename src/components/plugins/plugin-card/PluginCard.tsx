@@ -13,8 +13,10 @@ export interface IPluginCardProps {
 }
 
 export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
-  const formattedDownloads = useMemo(() => formatNumber(plugin.downloads), [plugin]);
-  const formattedDate = useMemo(() => dateFormat(plugin.date), [plugin]);
+  const formattedDownloads = useMemo(() => {
+    formatNumber(plugin.downloads);
+  }, [plugin.downloads]);
+  const formattedDate = useMemo(() => dateFormat(plugin.date), [plugin.date]);
 
   return (
     <NavLink to={`/plugins/${plugin.id}`} className={styles.pluginCardLink}>
