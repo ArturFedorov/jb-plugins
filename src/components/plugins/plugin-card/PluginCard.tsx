@@ -13,9 +13,6 @@ export interface IPluginCardProps {
 }
 
 export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
-  const formattedDownloads = useMemo(() => {
-    formatNumber(plugin.downloads);
-  }, [plugin.downloads]);
   const formattedDate = useMemo(() => dateFormat(plugin.date), [plugin.date]);
   const memoizedStarRating = useMemo(() => <StarRating rating={plugin.rating} />, [plugin.rating]);
 
@@ -33,7 +30,7 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
           <span>{plugin.description}</span>
         </div>
         <div className={styles.pluginCardFooter}>
-          <span className="is-caption">{formattedDownloads} downloads</span>
+          <span className="is-caption">{formatNumber(plugin.downloads)} downloads</span>
           <span className="is-caption">{formattedDate}</span>
         </div>
       </div>

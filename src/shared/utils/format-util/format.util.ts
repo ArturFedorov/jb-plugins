@@ -4,8 +4,12 @@
  * @returns formatted number as string 89098 => 89 098
  */
 export function formatNumber(value: number): string {
+  // 0 will be returned as empty string
   if (!value) return '';
-  return value.toLocaleString().replace(/[,.]/g, ' ');
+  // behaviour unpredictable based on locale of machine
+  // return value.toLocaleString().replace(/[,.]/g, ' ');
+  // return new Intl.NumberFormat('en-US').format(value).replace(/[,.]/g, ' ');
+  return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ');
 }
 
 /**
@@ -24,10 +28,11 @@ export function getIconUrl() {
     'https://plugins.jetbrains.com/files/4230/92719/icon/pluginIcon.svg'
   ];
 
-  return iconUrls[randomInteger(1, iconUrls.length - 1)];
+  return iconUrls[randomInteger(0, iconUrls.length - 1)];
 }
 
 export function randomInteger(min: number, max: number) {
+  // dependant on browser implementation
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
