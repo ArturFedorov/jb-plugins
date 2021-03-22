@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -19,38 +19,26 @@ const PluginForm: FunctionComponent<{
   addPluginConnect: (newPlugin: INewPlugin) => void;
   setPluginConnect: ActionCreatorWithPayload<IPlugin, string>;
 }> = ({ addPluginConnect, setPluginConnect }) => {
-  const { control, handleSubmit, errors, watch } = useForm();
-  const plugin = DefaultsUtil.defaultPlugin;
-  const name = watch('name');
-  const author = watch('author');
-  const icon = watch('icon') || '';
-  const description = watch('description');
+  const { control, handleSubmit, errors } = useForm();
+  const plugin = { ...DefaultsUtil.defaultPlugin };
   const history = useHistory();
 
-  const ref = useRef(0);
-  console.log(ref);
-  ref.current += 1;
-  console.log(ref);
-
   useEffect(() => {
-    plugin.author = author;
-    plugin.name = name;
-    plugin.icon = icon;
-    plugin.description = description;
-
-    console.log(plugin);
-    setPluginConnect(plugin);
-
     return () => {
       setPluginConnect(DefaultsUtil.defaultPlugin);
     };
-  }, [setPluginConnect, name, icon, author, plugin, description]);
+  }, [setPluginConnect]);
 
   const submitPluginForm = () => {
     addPluginConnect(plugin);
   };
 
   const goToMain = () => history.push('/');
+
+  const onValueChange = (value: string, key: string) => {
+    plugin[key] = value;
+    setPluginConnect(plugin);
+  };
 
   return (
     <form className={styles.pluginForm} onSubmit={handleSubmit(submitPluginForm)}>
@@ -66,7 +54,10 @@ const PluginForm: FunctionComponent<{
               name="name"
               value={value}
               placeholder="Plugin name"
-              onChange={onChange}
+              onChange={(event) => {
+                onChange(event);
+                onValueChange(event, 'name');
+              }}
               withError={errors.name}
             />
           )}
@@ -91,7 +82,10 @@ const PluginForm: FunctionComponent<{
               name="author"
               value={value}
               placeholder="Author name"
-              onChange={onChange}
+              onChange={(event) => {
+                onChange(event);
+                onValueChange(event, 'author');
+              }}
               withError={errors.author}
             />
           )}
@@ -112,7 +106,10 @@ const PluginForm: FunctionComponent<{
               name="icon"
               value={value}
               placeholder="URL to an Icon"
-              onChange={onChange}
+              onChange={(event) => {
+                onChange(event);
+                onValueChange(event, 'icon');
+              }}
               withError={errors.icon}
             />
           )}
@@ -138,7 +135,10 @@ const PluginForm: FunctionComponent<{
                 value={value}
                 placeholder="Optional"
                 className={classNames(input.input, textarea.textarea)}
-                onChange={onChange}
+                onChange={(event) => {
+                  onChange(event.target.value);
+                  onValueChange(event.target.value, 'description');
+                }}
               />
             </div>
           )}

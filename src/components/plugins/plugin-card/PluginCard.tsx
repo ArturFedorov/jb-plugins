@@ -17,6 +17,7 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
     formatNumber(plugin.downloads);
   }, [plugin.downloads]);
   const formattedDate = useMemo(() => dateFormat(plugin.date), [plugin.date]);
+  const memoizedStarRating = useMemo(() => <StarRating rating={plugin.rating} />, [plugin.rating]);
 
   return (
     <NavLink to={`/plugins/${plugin.id}`} className={styles.pluginCardLink}>
@@ -25,7 +26,7 @@ export const PluginCard: FunctionComponent<IPluginCardProps> = ({ plugin }) => {
           <PluginIcon iconUrl={plugin.icon || pluginIcon} className={styles.pluginCardIcon} />
           <div className={styles.pluginCardSection}>
             <h3 className="is-lighter marginless">{plugin.name}</h3>
-            <StarRating rating={plugin.rating} />
+            {memoizedStarRating}
           </div>
         </div>
         <div className={styles.pluginCardDescription}>
