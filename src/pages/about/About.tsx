@@ -339,6 +339,63 @@ const AboutPage: FunctionComponent = () => {
               </div>
             </AboutSection>
           </div>
+          <div id="us">
+            <AboutSection order="7." header="Possible UX improvements">
+              <div className={styles.aboutSection}>
+                <span className={classNames(styles.aboutParagraph, 'is-underlined')}>Filters:</span>
+                <span className={styles.aboutParagraph}>
+                  Filters and search panel should stay visible in viewport.
+                </span>
+                <span className={styles.aboutParagraph}>
+                  Dropdown with autofill for search fill
+                </span>
+              </div>
+              <div className={styles.aboutSection}>
+                <span className={classNames(styles.aboutParagraph, 'is-underlined')}>Header:</span>
+                <span className={styles.aboutParagraph}>
+                  Should probably be fixed and not scrolled away.
+                </span>
+              </div>
+              <div className={styles.aboutSection}>
+                <span className={classNames(styles.aboutParagraph, 'is-underlined')}>
+                  Dark theme:
+                </span>
+                <span className={styles.aboutParagraph}>
+                  Can be suggested as alternate to light theme.
+                </span>
+              </div>
+              <div className={styles.aboutSection}>
+                <span className={classNames(styles.aboutParagraph, 'is-underlined')}>
+                  Prompt modals:
+                </span>
+                <span className={styles.aboutParagraph}>
+                  Probably can be replaced with prompt questions. That won't cover the whole screen.
+                </span>
+                <span className={styles.aboutParagraph}>
+                  Leave use control, th check everything again before deletion.
+                </span>
+              </div>
+              <div className={styles.aboutSection}>
+                <span className={classNames(styles.aboutParagraph, 'is-underlined')}>Author:</span>
+                <span className={styles.aboutParagraph}>More about author.</span>
+                <span className={styles.aboutParagraph}>
+                  If some famous developers add plugins, probably it is nice to know.
+                </span>
+                <span className={styles.aboutParagraph}>Whose plugins have most downloads.</span>
+              </div>
+              <div className={styles.aboutSection}>
+                <span className={classNames(styles.aboutParagraph, 'is-underlined')}>
+                  Animations:
+                </span>
+                <span className={styles.aboutParagraph}>
+                  Subtle animations in order to help user navigate.
+                </span>
+                <span className={styles.aboutParagraph}>
+                  Page transitions similar to mobile devices
+                </span>
+              </div>
+            </AboutSection>
+          </div>
         </div>
       </div>
     </div>

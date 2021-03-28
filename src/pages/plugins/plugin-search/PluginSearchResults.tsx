@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -65,6 +65,11 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
     goToUrl(query, newLimit);
   };
 
+  const memoizedPluginList = useMemo(
+    () => <PluginList isLoading={loadingFromApi} header="" plugins={plugins} isCentered={true} />,
+    [loadingFromApi, plugins]
+  );
+
   return (
     <div className={styles.pluginSearch}>
       <div className="container">
@@ -82,7 +87,7 @@ const PluginSearchResultsPage: FunctionComponent<ISearchResultsProps> = ({
           <h2 className={classNames(styles.pluginSearchHeader, 'is-lighter')}>
             Plugins {loadingFromApi}
           </h2>
-          <PluginList isLoading={loadingFromApi} header="" plugins={plugins} isCentered={true} />
+          {memoizedPluginList}
           {showMoreVisible && (
             <div className={styles.pluginSearchMore}>
               <span className={styles.pluginSearchButton} onClick={showMore}>

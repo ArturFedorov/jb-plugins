@@ -2,6 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { RootState } from '../../../store/rootReducer';
 import {
   getPlugin,
@@ -25,7 +26,12 @@ import images1 from '../../../assets/images/scrennshot1.png';
 import images2 from '../../../assets/images/scrennshot2.png';
 import { Tooltip } from '../../../components/common/tooltip/Tooltip';
 import { formatNumber } from '../../../shared/utils/format-util/format.util';
-import { setPluginDeletedFailed, setPluginDeletedSuccess } from '../../../store/features/plugins';
+import {
+  setPlugin,
+  setPluginDeletedFailed,
+  setPluginDeletedSuccess
+} from '../../../store/features/plugins';
+import { DefaultsUtil } from '../../../shared/utils/defaults.util';
 
 export interface IPluginDetailsProps {
   plugin: IPlugin;
@@ -35,6 +41,7 @@ export interface IPluginDetailsProps {
   deletePluginConnect: (id: string) => void;
   setPluginDeletedSuccessConnect: (value: boolean) => void;
   setPluginDeletedFailedConnect: (value: boolean) => void;
+  setPluginConnect: ActionCreatorWithPayload<IPlugin, string>;
 }
 
 const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
@@ -44,7 +51,8 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
   fetchPluginConnect,
   deletePluginConnect,
   setPluginDeletedSuccessConnect,
-  setPluginDeletedFailedConnect
+  setPluginDeletedFailedConnect,
+  setPluginConnect
 }) => {
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
@@ -61,12 +69,14 @@ const PluginDetailsPage: FunctionComponent<IPluginDetailsProps> = ({
       // reset values
       setPluginDeletedSuccessConnect(false);
       setPluginDeletedFailedConnect(false);
+      setPluginConnect(DefaultsUtil.defaultPlugin);
     };
   }, [
     pluginDeletedFailed,
     pluginDeletedSuccess,
     setPluginDeletedSuccessConnect,
     setPluginDeletedFailedConnect,
+    setPluginConnect,
     history
   ]);
 
@@ -184,7 +194,8 @@ const mapDispatchToProps = {
   fetchPluginConnect: fetchPlugin,
   deletePluginConnect: deletePlugin,
   setPluginDeletedSuccessConnect: setPluginDeletedSuccess,
-  setPluginDeletedFailedConnect: setPluginDeletedFailed
+  setPluginDeletedFailedConnect: setPluginDeletedFailed,
+  setPluginConnect: setPlugin
 };
 
 const mapStateToProps = (state: RootState) => ({

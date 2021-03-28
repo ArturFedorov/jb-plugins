@@ -13,6 +13,14 @@ $description-height: 148px;
 
     &:hover {
       border-color: $black;
+
+      .plugin-card-description {
+        color: $black;
+      }
+
+      .plugin-card-footer {
+        color: $black;
+      }
     }
 
     &-description {
@@ -25,10 +33,6 @@ $description-height: 148px;
       padding: $building-unit-x3;
       line-height: 24px;
       transition: $default-transition;
-
-      &-hovered {
-        color: $black;
-      }
     }
 
     &-footer {
@@ -39,10 +43,6 @@ $description-height: 148px;
       justify-content: space-between;
       padding: $building-unit-x2 $building-unit-x3;
       transition: $default-transition;
-
-      &-hovered {
-        color: $black;
-      }
     }
 
     &-header {
@@ -62,6 +62,7 @@ $description-height: 148px;
     &-link {
       width: $card-width;
       display: block;
+      cursor: pointer;
 
       @media ($mobile) {
         width: 100%;
